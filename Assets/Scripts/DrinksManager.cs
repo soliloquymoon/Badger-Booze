@@ -51,14 +51,14 @@ public class DrinkManager {
             {"Vodka", 1.5f}, {"Tomato Juice", 3.0f}, {"Lemon Juice", 0.5f}
         }),
         
-        new Drink("Brandy Old Fashioned", new Dictionary<string, float> 
+        new Drink("Cosmopolitan", new Dictionary<string, float> 
         { 
-            {"Brandy", 2.0f}, {"Sugar", 1.0f}, {"Bitters", 0.5f}, {"Club Soda", 2.0f}
+            {"Vodka", 1.5f}, {"Lime Juice", 0.5f}, {"Cranberry Juice", 1.0f}, {"Cointreau", 0.5f}
         }),
 
-        new Drink("Manhattan", new Dictionary<string, float> 
+        new Drink("Vesper", new Dictionary<string, float> 
         { 
-            {"Rye Whiskey", 2.0f}, {"Sweet Vermouth", 1.0f}, {"Bitters", 0.25f}
+            {"Gin", 1.5f}, {"Vodka", 0.5f}, {"Lillet Blanc", 0.25f}
         }),
 
         new Drink("Whiskey Sour", new Dictionary<string, float> 
@@ -66,19 +66,19 @@ public class DrinkManager {
             {"Whiskey", 2.0f}, {"Lemon Juice", 0.75f}, {"Simple Syrup", 0.5f}
         }),
 
-        new Drink("Moscow Mule", new Dictionary<string, float> 
+        new Drink("Paradise", new Dictionary<string, float> 
         { 
-            {"Vodka", 2.0f}, {"Lime Juice", 0.5f}, {"Ginger Beer", 4.0f}
+            {"Gin", 2.0f}, {"Brandy", 1.5f}, {"Orange Juice", 1.0f}
         }),
 
-        new Drink("Gin and Tonic", new Dictionary<string, float> 
+        new Drink("French 75", new Dictionary<string, float> 
         { 
-            {"Gin", 2.0f}, {"Tonic Water", 4.0f}, {"Lime Wedge", 0.25f}
+            {"Gin", 2.0f}, {"Lemon Juice", 1.0f}, {"Simple Syrup", 0.5f}, {"Champagne", 4.0f}
         }),
 
-        new Drink("Long Island Iced Tea", new Dictionary<string, float> 
+        new Drink("White Lady", new Dictionary<string, float> 
         { 
-            {"Vodka", 0.5f}, {"Tequila", 0.5f}, {"White Rum", 0.5f}, {"Gin", 0.5f}, {"Triple Sec", 0.5f}, {"Lemon Juice", 0.75f}, {"Simple Syrup", 0.5f}, {"Cola", 1.0f}
+            {"Gin", 2.5f}, {"Triple Sec", 2.0f}, {"Lemon Juice", 1.75f}
         }),
 
         new Drink("Negroni", new Dictionary<string, float> 
@@ -86,9 +86,9 @@ public class DrinkManager {
             {"Gin", 1.0f}, {"Campari", 1.0f}, {"Sweet Vermouth", 1.0f}
         }),
 
-        new Drink("Espresso Martini", new Dictionary<string, float> 
+        new Drink("New York Sour", new Dictionary<string, float> 
         { 
-            {"Vodka", 1.5f}, {"Kahlua", 1.0f}, {"Espresso", 1.0f}
+            {"Whiskey", 4.0f}, {"Lemon Juice", 2.0f}, {"Simple Syrup", 1.5f}, {"Red Wine", 0.5f}
         })
     };
 
