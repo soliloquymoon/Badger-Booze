@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: badgers_0
+      name: Badgers_0
       rect:
         serializedVersion: 2
         x: 0
@@ -118,7 +118,7 @@ TextureImporter:
         width: 1500
         height: 2624.5
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -131,7 +131,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: badgers_1
+      name: Badgers_1
       rect:
         serializedVersion: 2
         x: 1500
@@ -139,7 +139,7 @@ TextureImporter:
         width: 1500
         height: 2624.5
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -152,7 +152,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: badgers_2
+      name: Badgers_2
       rect:
         serializedVersion: 2
         x: 3000
@@ -160,7 +160,7 @@ TextureImporter:
         width: 1500
         height: 2624.5
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -173,7 +173,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: badgers_3
+      name: Badgers_3
       rect:
         serializedVersion: 2
         x: 4500
@@ -181,7 +181,7 @@ TextureImporter:
         width: 1500
         height: 2624.5
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -194,15 +194,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: badgers_4
+      name: Badgers_4
       rect:
         serializedVersion: 2
         x: 0
-        y: 0.5
+        y: 0
         width: 1500
-        height: 2624.5
+        height: 2624
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -215,7 +215,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: badgers_5
+      name: Badgers_5
       rect:
         serializedVersion: 2
         x: 1500
@@ -223,7 +223,7 @@ TextureImporter:
         width: 1500
         height: 2624.5
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -236,7 +236,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: badgers_6
+      name: Badgers_6
       rect:
         serializedVersion: 2
         x: 3000
@@ -244,7 +244,7 @@ TextureImporter:
         width: 1500
         height: 2624.5
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -257,7 +257,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: badgers_7
+      name: Badgers_7
       rect:
         serializedVersion: 2
         x: 4500
@@ -265,7 +265,7 @@ TextureImporter:
         width: 1500
         height: 2624.5
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -288,14 +288,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      badgers_0: -2080407543
-      badgers_1: -1296852133
-      badgers_2: 275213903
-      badgers_3: -2146619585
-      badgers_4: 1964577281
-      badgers_5: -448610996
-      badgers_6: -287036754
-      badgers_7: -1270899556
+      Badgers_0: -2080407543
+      Badgers_1: -1296852133
+      Badgers_2: 275213903
+      Badgers_3: -2146619585
+      Badgers_4: 1964577281
+      Badgers_5: -448610996
+      Badgers_6: -287036754
+      Badgers_7: -1270899556
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
