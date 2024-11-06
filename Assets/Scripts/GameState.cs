@@ -14,7 +14,7 @@ public class GameState : MonoBehaviour
 
     // Use to start, pause, or resume game time.
     public bool countTime = true;
--
+
     void Start()
     {
         clockUI = GameObject.Find("TimeText").GetComponent<Text>();
