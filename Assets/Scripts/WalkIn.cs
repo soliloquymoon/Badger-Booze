@@ -10,36 +10,27 @@ public class WalkIn : MonoBehaviour
     public GameObject dialogueBox;          // Reference to the dialogue box GameObject
     public GameObject customerMood;         // Reference to the customer mood GameObject
     public GameObject barBackground;        // Reference to the bar background GameObject
-
-    private float startX;                   // Starting x position to reset when needed
     private float bounceTimer = 0f;         // Timer for bounce effect
-    private float leftBound;                // Left boundary of the bar background
-    private float rightBound;               // Right boundary of the bar background
-    private float bottomThirdYPosition;     // The Y position for the bottom third of the scene
-    private float lastThirdXPosition;       // The X position where the character stops (last third)
-    private bool hasReachedMiddle = false;  // Flag to check if the character reached the middle
+    private float bounceYPosition;     // The Y position for the character (1/3)
+    private float targetXPosition;       // The X position where the character stops (3/4)
+    private bool reachedPosition = false;  // Flag to check if the character reached the middle
 
     // Start is called before the first frame update
     void Start()
     {
-        startX = transform.position.x;     // Record the initial x position of the character
-
         // Get the bounds of the bar background (assuming it has a collider)
         if (barBackground != null)
         {
             BoxCollider2D boxCollider = barBackground.GetComponent<BoxCollider2D>();
             if (boxCollider != null)
             {
-                // Calculate left and right boundaries based on the collider's size
-                leftBound = barBackground.transform.position.x - (boxCollider.size.x / 2);
-                rightBound = barBackground.transform.position.x + (boxCollider.size.x / 2);
-
-                // Calculate the bottom third y position
                 float backgroundHeight = boxCollider.size.y;
-                bottomThirdYPosition = barBackground.transform.position.y - (backgroundHeight / 3);
+                bounceYPosition = barBackground.transform.position.y - (backgroundHeight / 3);
 
-                // Calculate the position where the character should stop in the last third of the screen
-                lastThirdXPosition = barBackground.transform.position.x + (boxCollider.size.x / 3);
+                // Customer starts walking at the end of the screen
+                transform.position = new Vector3(Screen.width, transform.position.y, transform.position.z);
+                // Calculate the position where the character should stop (3/4 of the screen from the left)
+                targetXPosition = Screen.width * 0.75f;
             }
         }
 
@@ -59,27 +50,21 @@ public class WalkIn : MonoBehaviour
     void Update()
     {
         // Check if the character has reached the last third of the screen on the x-axis
-        if (transform.position.x > lastThirdXPosition)
+        if (!reachedPosition)
         {
-            // Horizontal movement
-            float newX = transform.position.x - (moveSpeed * Time.deltaTime);
+            // Convert to world position, using the character’s current Y and Z to avoid overwriting those
+            Vector3 targetPosition = Camera.main.ScreenToWorldPoint(new Vector3(targetXPosition, Screen.height / 2f, Camera.main.nearClipPlane));
+            
+            // Move the character towards the target position
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(targetPosition.x, transform.position.y, transform.position.z), moveSpeed * Time.deltaTime);
 
-            // Apply the new horizontal position, but stop if it reaches the last third
-            if (newX <= lastThirdXPosition)
-            {
-                newX = lastThirdXPosition;
-                hasReachedMiddle = true; // Set the flag to true when reaching the middle
+            if(transform.position.x <= targetXPosition) {
+                reachedPosition = true;
             }
-
-            transform.position = new Vector2(newX, transform.position.y);
-        }
-        else if (!hasReachedMiddle)
-        {
-            hasReachedMiddle = true; // Set the flag if not already set
         }
 
         // Display dialogue box and customer mood when in the last third
-        if (hasReachedMiddle)
+        if (reachedPosition)
         {
             if (dialogueBox != null)
             {
@@ -92,16 +77,16 @@ public class WalkIn : MonoBehaviour
         }
 
         // Apply bounce effect only if not yet in the middle
-        if (!hasReachedMiddle)
+        if (!reachedPosition)
         {
             bounceTimer += Time.deltaTime * bounceFrequency;
             float yOffset = Mathf.Sin(bounceTimer) * bounceHeight;
-            transform.position = new Vector2(transform.position.x, bottomThirdYPosition + yOffset);
+            transform.position = new Vector2(transform.position.x, bounceYPosition + yOffset);
         }
         else
         {
             // Stop bouncing and set the y position to the fixed bottom third position
-            transform.position = new Vector2(transform.position.x, bottomThirdYPosition);
+            transform.position = new Vector2(transform.position.x, bounceYPosition);
         }
     }
 }

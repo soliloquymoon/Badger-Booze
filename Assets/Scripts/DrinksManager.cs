@@ -2,40 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/*
- * Used to represent a specific cocktail on the drinkList, or a drink made by the player.
- */
-public class Drink {
-    private string name { get; set; }
-    // Maps each ingredient name to its amount (represented as a float)
-    private Dictionary<string, float> ingredients { get; set; }
 
-    /*
-     * Used for creating pre-determined drinks for the drinkList (internal use only)
-     */
-    public Drink(string name, Dictionary<string, float> ingredients) {
-        this.name = name;
-        this.ingredients = ingredients;
+public class DrinkManager : MonoBehaviour {
+    private GameState gameState;
+
+    void Start() {
+        gameState = GameObject.Find("GameState").GetComponent<GameState>();
     }
-
-    /*
-     * Used for creating Drink objects served by the player, no need for a drink name
-     */
-    public Drink(Dictionary<string, float> ingredients) {
-        this.ingredients = ingredients;
-    }
-
-    public string getName() {
-        return name;
-    }
-
-    public Dictionary<string, float> getIngredients() {
-        return ingredients;
-    }
-}
-
-
-public class DrinkManager {
+    
     /*
      * Static list of all possible orders in the game
      */
@@ -92,6 +66,9 @@ public class DrinkManager {
         })
     };
 
+    public List<Drink> getDrinkList() {
+        return drinkList;
+    }
 
     /*
      * Calculates the difference between the customer's order and the player's drink, returns a score.
@@ -121,9 +98,11 @@ public class DrinkManager {
         float differenceRatio = totalDifference / maxDifference;
 
         // Invert the ratio to get the closeness percentage instead of the difference percentage
-        int score = (int)(100 * (1 - differenceRatio));
-
+        int closeness = (int)(100 * (1 - differenceRatio));
         // Ensure the score is between 0 and 100
-        return Mathf.Clamp(score, 0, 100);
+        int score = Mathf.Clamp(closeness, 0, 100);
+        
+        gameState.AddMoney(score);
+        return score;
     }
 }
