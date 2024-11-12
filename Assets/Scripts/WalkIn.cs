@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WalkIn : MonoBehaviour
 {
-    public float moveSpeed = 25f;           // Speed of horizontal movement
+    public float moveSpeed = 100f;           // Speed of horizontal movement
     public float bounceHeight = 4f;         // Height of each bounce
     public float bounceFrequency = 6f;      // Frequency of the bounce
     public GameObject dialogueBox;          // Reference to the dialogue box GameObject
