@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c3e3c7bab9d5e4428be562f5f02de595
+guid: 4f84f0a072ff443d8b3b5b11919a005b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,43 +110,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Bar_0
+      name: Shaker_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 1142.5
-        width: 2000
-        height: 1142.5
+        y: 0
+        width: 400
+        height: 925
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b76c7ac2ecc894cee96dd71dae1acaec
-      internalID: -1941127123
+      spriteID: 059f251a9f2c24191a9756c615a2e579
+      internalID: -1082604235
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bar_1
+      name: Shaker_1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0.5
-        width: 2000
-        height: 1142.5
+        x: 400
+        y: 0
+        width: 400
+        height: 925
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3d7171f6766f24fea8dd2295170d4ae2
-      internalID: 938878883
+      spriteID: 78f28bc07fbe04642a02948281dee7fc
+      internalID: 26536606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shaker_2
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 0
+        width: 400
+        height: 925
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d312184f05e144c53878a655248c461e
+      internalID: -748970244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shaker_3
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 0
+        width: 400
+        height: 925
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b13faafa99b104bef955dac30e41bbcf
+      internalID: -646335299
       vertices: []
       indices: 
       edges: []
@@ -162,8 +204,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Bar_0: -1941127123
-      Bar_1: 938878883
+      Shaker_0: -1082604235
+      Shaker_1: 26536606
+      Shaker_2: -748970244
+      Shaker_3: -646335299
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

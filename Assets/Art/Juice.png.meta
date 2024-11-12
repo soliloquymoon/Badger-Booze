@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c3e3c7bab9d5e4428be562f5f02de595
+guid: 7fa9c09631c4d4fe09eca6636405a190
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,43 +110,106 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Bar_0
+      name: Lemon_Juice
       rect:
         serializedVersion: 2
         x: 0
-        y: 1142.5
-        width: 2000
-        height: 1142.5
+        y: 0
+        width: 200
+        height: 667
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b76c7ac2ecc894cee96dd71dae1acaec
-      internalID: -1941127123
+      spriteID: 2a8fd27c6991e4ee4b0c870c3ab00966
+      internalID: 1543726027
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bar_1
+      name: Tomato_Juice
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0.5
-        width: 2000
-        height: 1142.5
+        x: 199
+        y: 0
+        width: 200
+        height: 667
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3d7171f6766f24fea8dd2295170d4ae2
-      internalID: 938878883
+      spriteID: 6643eea91fea74b138459ec896ab8af5
+      internalID: -2145864839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Orange_Juice
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 0
+        width: 200
+        height: 667
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b4effd4ac3ab4ab09933414ee10ee82
+      internalID: -964276854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lime_Juice
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 0
+        width: 200
+        height: 667
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 998a48d92a59f4ead892eccccdd24e82
+      internalID: 177443042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cranberry_Juice
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 0
+        width: 200
+        height: 667
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1240f316452e14dff92106ecd5373038
+      internalID: -339993425
       vertices: []
       indices: 
       edges: []
@@ -162,8 +225,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Bar_0: -1941127123
-      Bar_1: 938878883
+      Cranberry_Juice: -339993425
+      Lemon_Juice: 1543726027
+      Lime_Juice: 177443042
+      Orange_Juice: -964276854
+      Tomato_Juice: -2145864839
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
