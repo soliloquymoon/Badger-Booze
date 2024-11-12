@@ -70,6 +70,15 @@ public class DrinkManager : MonoBehaviour {
         return drinkList;
     }
 
+    public Drink getDrink(string name) {
+        foreach (Drink drink in drinkList) {
+            if (drink.getName() == name) {
+                return drink;
+            }
+        }
+        return null;
+    }
+
     /*
      * Calculates the difference between the customer's order and the player's drink, returns a score.
      * playerDrink has no name, and is not on the drinkList.

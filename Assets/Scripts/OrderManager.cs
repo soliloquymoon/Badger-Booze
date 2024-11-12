@@ -28,7 +28,7 @@ public class Order {
 
     public void setDrinkName(string drinkName) {
         this.drinkName = drinkName;
-        this.customerOrder.Replace("*", drinkName);
+        this.customerOrder = this.customerOrder.Replace("*", drinkName);
     }
 }
 
@@ -171,7 +171,7 @@ public class OrderManager {
             "Paradise", "French 75", "White Lady", "Negroni", "New York Sour"
         };
         if (order.getDrinkName() == "") {
-            string randomDrink = drinkNames[UnityEngine.Random.Range(0, drinkNames.Length)];
+            string randomDrink = drinkNames[UnityEngine.Random.Range(0, drinkNames.Length - 1)];
             order.setDrinkName(randomDrink);
         }
 

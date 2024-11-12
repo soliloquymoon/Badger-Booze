@@ -11,7 +11,8 @@ public class GameState : MonoBehaviour
     private float currentTime { get; set; } 
     private float endTime { get; set; }      
     private float barMoney { get; set; } 
-    private bool countTime = false;
+    private bool countTime = true;
+    private GameObject currentCustomer;
 
     // Gets called by DrinksManager every time a drink score is calculated
     public void AddMoney(float amount) {
@@ -33,12 +34,24 @@ public class GameState : MonoBehaviour
         countTime = false;
     }
 
+    public void NewDay() {
+        currentCustomer.GetComponent<Customer>().NewCustomer();
+        currentCustomer.SetActive(true);
+        currentTime = 1080.0f;
+        timeOfDay = "PM";
+        countTime = true;
+    }
+
+    public bool isDayDone() {
+        return !countTime;
+    }
+
     void Start()
     {
         // Set up time and money variables
-        currentTime = 480.0f; // Starts at 8:00, equivalent to 480 minutes
-        endTime = 1440.0f;  // Ends at midnight, equivalent to 1440 minutes
-        timeOfDay = "AM";
+        currentTime = 1080.0f; // Starts at 6PM, equivalent to 1080 minutes
+        endTime = 1560.0f;  // Ends at 2AM, equivalent to 1560 minutes
+        timeOfDay = "PM";
         barMoney = 0.0f;    // TODO: Retrieve from save instead (Save per day?)
 
         // Get UI components
@@ -46,6 +59,9 @@ public class GameState : MonoBehaviour
         clockUI.text = "08:00 AM";
         moneyUI = GameObject.Find("MoneyText").GetComponent<Text>();
         moneyUI.text = "$" + barMoney.ToString("000,000");
+
+        // Get Customer
+        currentCustomer = GameObject.Find("Customer");
 
         // Rebuild all UI Layout on Start to Prevent UI glitches
         LayoutRebuilder.ForceRebuildLayoutImmediate(GameObject.Find("TopLeft").GetComponent<RectTransform>());
@@ -55,6 +71,8 @@ public class GameState : MonoBehaviour
     {
         if(currentTime >= endTime) {
             countTime = false;
+            currentCustomer.SetActive(false);
+            // TODO: Implement end of day, save game settings and time using PlayerPrefs
         }
         if(countTime) {
             currentTime += Time.deltaTime * 1.25f;      // 1 minute in game time is equivalent to 0.8 seconds in real time.
@@ -63,8 +81,9 @@ public class GameState : MonoBehaviour
             if(hour != 12) {
                 hour %= 12;
             }
-            if(hour >= 12 && hour < 24) {
-                timeOfDay = "PM";
+            // Switch to AM after midnight
+            if(hour == 0) {
+                timeOfDay = "AM";
             }
             int minute = Mathf.FloorToInt(currentTime % 60.0f);
             clockUI.text = hour.ToString("00") + ":" + minute.ToString("00") + " " + timeOfDay;

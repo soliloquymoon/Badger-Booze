@@ -1,9 +1,9 @@
 fileFormatVersion: 2
-guid: 6d6e735fdfa874afaae31972d6c19a1f
+guid: 38946661668d145e997ec72eb7ecc877
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 13
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -106,17 +106,30 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Ingredients_Button
+      name: Badgers_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 256
-        width: 128
-        height: 128
+        y: 2624.5
+        width: 1500
+        height: 2624.5
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +137,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4bc517ce855464173b63b420073ae81b
-      internalID: 1642938371
+      spriteID: 0c11852f0d9434c1488267ecd4915bd0
+      internalID: -2080407543
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Recipe_Button
+      name: Badgers_1
       rect:
         serializedVersion: 2
-        x: 128
-        y: 256
-        width: 128
-        height: 128
+        x: 1500
+        y: 2624.5
+        width: 1500
+        height: 2624.5
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,20 +158,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1a5ac6be7a91548bab52c0740d79e409
-      internalID: -1504011768
+      spriteID: c0282b4070ab64c0c9deba5bc3ea74fb
+      internalID: -1296852133
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Setting_Button
+      name: Badgers_2
       rect:
         serializedVersion: 2
-        x: 0
-        y: 128
-        width: 128
-        height: 128
+        x: 3000
+        y: 2624.5
+        width: 1500
+        height: 2624.5
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,71 +179,113 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8a06172d50ed24214ba542356ef06932
-      internalID: -1786198753
+      spriteID: 29574fd3eb8e948c79d4078d8fc65d86
+      internalID: 275213903
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Box_Basic
+      name: Badgers_3
       rect:
         serializedVersion: 2
-        x: 127
-        y: 128
-        width: 128
-        height: 128
+        x: 4500
+        y: 2624.5
+        width: 1500
+        height: 2624.5
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 10, y: 10, z: 10, w: 10}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0dd1be23a4384468191315eee51c8b64
-      internalID: 1568926585
+      spriteID: 9824a1d4c0de54137b77cc4e5d3c3ccb
+      internalID: -2146619585
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Box_Plain
+      name: Badgers_4
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 128
-        height: 128
+        width: 1500
+        height: 2624
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 10, y: 10, z: 10, w: 10}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c12cb64b47a8a45c2996e0357668c13e
-      internalID: -1763274043
+      spriteID: 4184b0cd59e094133acfab1376a8115b
+      internalID: 1964577281
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Button_Gradient
+      name: Badgers_5
       rect:
         serializedVersion: 2
-        x: 128
-        y: 0
-        width: 128
-        height: 128
+        x: 1500
+        y: 0.5
+        width: 1500
+        height: 2624.5
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 10, y: 10, z: 10, w: 10}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6ecbde63e78f44628962187228f4a4de
-      internalID: 866805738
+      spriteID: 029a9494cd6554b3ba11e50b77ec4b3a
+      internalID: -448610996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Badgers_6
+      rect:
+        serializedVersion: 2
+        x: 3000
+        y: 0.5
+        width: 1500
+        height: 2624.5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30eac41bfc9be425a989f0cb40f10056
+      internalID: -287036754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Badgers_7
+      rect:
+        serializedVersion: 2
+        x: 4500
+        y: 0.5
+        width: 1500
+        height: 2624.5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b87c1b4799de74b92be73d1c02540e20
+      internalID: -1270899556
       vertices: []
       indices: 
       edges: []
@@ -246,12 +301,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Box_Basic: 1568926585
-      Box_Plain: -1763274043
-      Button_Gradient: 866805738
-      Ingredients_Button: 1642938371
-      Recipe_Button: -1504011768
-      Setting_Button: -1786198753
+      Badgers_0: -2080407543
+      Badgers_1: -1296852133
+      Badgers_2: 275213903
+      Badgers_3: -2146619585
+      Badgers_4: 1964577281
+      Badgers_5: -448610996
+      Badgers_6: -287036754
+      Badgers_7: -1270899556
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
