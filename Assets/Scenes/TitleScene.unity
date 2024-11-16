@@ -38,6 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -419,6 +420,44 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 353889088}
   m_CullTransparentMesh: 1
+--- !u!1 &430020775
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 430020776}
+  m_Layer: 5
+  m_Name: LeftPage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &430020776
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 430020775}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1501091999}
+  - {fileID: 1832123662}
+  - {fileID: 1591879665}
+  m_Father: {fileID: 1179630655}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -140, y: 30}
+  m_SizeDelta: {x: 250, y: 285}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -484,12 +523,12 @@ MonoBehaviour:
   m_RequiresColorTexture: 0
   m_Version: 2
   m_TaaSettings:
-    m_Quality: 3
-    m_FrameInfluence: 0.1
-    m_JitterScale: 1
-    m_MipBias: 0
-    m_VarianceClampScale: 0.9
-    m_ContrastAdaptiveSharpening: 0
+    quality: 3
+    frameInfluence: 0.1
+    jitterScale: 1
+    mipBias: 0
+    varianceClampScale: 0.9
+    contrastAdaptiveSharpening: 0
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -556,6 +595,140 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &584362298
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 584362301}
+  - component: {fileID: 584362300}
+  - component: {fileID: 584362299}
+  m_Layer: 5
+  m_Name: Pagination Right
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &584362299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 584362298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: 2
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: f2c3ac3f2602ec54e92d136e05b5a8e5, type: 2}
+  m_sharedMaterial: {fileID: 8940501211584709506, guid: f2c3ac3f2602ec54e92d136e05b5a8e5, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 11
+  m_fontSizeBase: 11
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 267.17294, z: 0, w: -0.000000031888092}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &584362300
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 584362298}
+  m_CullTransparentMesh: 1
+--- !u!224 &584362301
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 584362298}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1873244405}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.000030517578, y: -19.99999}
+  m_SizeDelta: {x: 250, y: 285}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -735,6 +908,123 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 741071256}
   m_CullTransparentMesh: 1
+--- !u!1 &804741758
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 804741759}
+  - component: {fileID: 804741762}
+  - component: {fileID: 804741761}
+  - component: {fileID: 804741760}
+  m_Layer: 5
+  m_Name: NextPage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &804741759
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 804741758}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1873244405}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 2, y: -10}
+  m_SizeDelta: {x: 265, y: 314}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &804741760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 804741758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1445835999}
+          m_TargetAssemblyTypeName: RecipeBookContents, MainScripts
+          m_MethodName: NextPage
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
+        - m_Target: {fileID: 1874131320}
+          m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+          m_MethodName: PlayOneShot
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 8300000, guid: 5357b96bbfba31f4488f7538089ef29a, type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &804741761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 804741758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.78867924, g: 0, b: 0, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &804741762
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 804741758}
+  m_CullTransparentMesh: 1
 --- !u!1 &1088785656
 GameObject:
   m_ObjectHideFlags: 0
@@ -868,6 +1158,83 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1088785656}
   m_CullTransparentMesh: 1
+--- !u!1 &1179630654
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1179630655}
+  - component: {fileID: 1179630657}
+  - component: {fileID: 1179630656}
+  m_Layer: 5
+  m_Name: RecipeBookPanel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1179630655
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1179630654}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 430020776}
+  - {fileID: 1873244405}
+  m_Father: {fileID: 1445835998}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: -13.64}
+  m_SizeDelta: {x: 690, y: 350}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1179630656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1179630654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 4b83c71d13182c94e9a6ee3dac94b339, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1179630657
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1179630654}
+  m_CullTransparentMesh: 1
 --- !u!1 &1235765599
 GameObject:
   m_ObjectHideFlags: 0
@@ -1000,6 +1367,214 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1235765599}
   m_CullTransparentMesh: 1
+--- !u!1 &1292412881
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1292412884}
+  - component: {fileID: 1292412883}
+  - component: {fileID: 1292412882}
+  m_Layer: 5
+  m_Name: Right Text Box
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1292412882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1292412881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: "     <style=\"DrinkSprite\"><sprite name=\"Margarita\"></style>\n\n\n<style=\"DrinkName>Margarita</style>\n\n<style=\"DrinkRecipe\">Tequila:
+    1.5 oz\nLime Juice: 1.0 oz\nTriple Sec: 0.5 oz </style>\n\n<style=\"DrinkDesc\">\"The
+    ultimate vacation in a glass. With tequila, lime juice, and triple sec, it\u2019s
+    like a summer breeze with a salty rim\u2014perfect for forgetting sunscreen woes!\"</style>\n\n    
+    <style=\"DrinkSprite\"><sprite name=\"Bloody_Mary\"></style>\n\n\n<style=\"DrinkName>Bloody
+    Mary</style>\n\n<style=\"DrinkRecipe\">Vodka: 1.5 oz\nTomato Juice: 3.0 oz\nLemon
+    Juice: 0.5 oz </style>\n\n<style=\"DrinkDesc\">\"Part cocktail, part tomato soup,
+    and 100% hangover cure. With vodka and tomato juice, it\u2019s practically a
+    vegetable smoothie. Add celery for crunch!\"</style>\n\n     <style=\"DrinkSprite\"><sprite
+    name=\"Cosmopolitan\"></style>\n\n\n<style=\"DrinkName>Cosmopolitan</style>\n\n<style=\"DrinkRecipe\">Vodka:
+    1.5 oz\nLime Juice: 0.5 oz\nCranberry Juice: 1.0 oz\nCointreau: 0.5 oz </style>\n\n<style=\"DrinkDesc\">\"Pink,
+    classy, and ready to steal the spotlight. Vodka, cranberry juice, and lime make
+    this a night-out essential\u2014and Instagram gold!\"</style>\n\n     <style=\"DrinkSprite\"><sprite
+    name=\"Vesper\"></style>\n\n\n<style=\"DrinkName>Vesper</style>\n\n<style=\"DrinkRecipe\">Gin:
+    1.5 oz\nVodka: 0.5 oz\nLillet Blanc: 0.25 oz</style>\n\n<style=\"DrinkDesc\">\"Shaken,
+    not stirred, and perfect for feeling like a secret agent. Gin, vodka, and Lillet
+    Blanc combine sophistication with a knockout punch.\"</style>\n\n     <style=\"DrinkSprite\"><sprite
+    name=\"Whiskey_Sour\"></style>\n\n\n<style=\"DrinkName>Whiskey Sour</style>\n\n<style=\"DrinkRecipe\">Whiskey:
+    2.0 oz\nLemon Juice: 0.75 oz\nSimple Syrup: 0.5 oz</style>\n\n<style=\"DrinkDesc\">\"Strong,
+    zesty, and a little sweet\u2014like your favorite bad decisions. Whiskey and
+    lemon juice make this a crowd-pleaser with a sour edge.\"</style>\n\n     <style=\"DrinkSprite\"><sprite
+    name=\"Paradise\"></style>\n\n\n<style=\"DrinkName>Paradise</style>\n\n<style=\"DrinkRecipe\">Gin:
+    2.0 oz\nBrandy: 1.5 oz\nOrange Juice: 1.0 oz</style>\n\n<style=\"DrinkDesc\">\"Fruity,
+    tropical, and dangerously smooth. With gin, brandy, and orange juice, it\u2019s
+    your one-way ticket to sipping on a beach (in your imagination).\"</style>\n\n    
+    <style=\"DrinkSprite\"><sprite name=\"French_75\"></style>\n\n\n<style=\"DrinkName>French
+    75</style>\n\n<style=\"DrinkRecipe\">Gin: 2.0 oz\nLemon Juice: 1.0 oz\nSimple
+    Syrup: 0.5 oz\nChampagne: 4.0 oz</style>\n\n<style=\"DrinkDesc\">\"Elegant and
+    bubbly, but don\u2019t let the fizz fool you\u2014this gin and champagne combo
+    packs a punch worthy of a battlefield cannon.\"</style>\n\n     <style=\"DrinkSprite\"><sprite
+    name=\"White_Lady\"></style>\n\n\n<style=\"DrinkName>White Lady</style>\n\n<style=\"DrinkRecipe\">Gin:
+    2.5 oz\nTriple Sec: 2.0 oz\nLemon Juice: 1.75 oz</style>\n\n<style=\"DrinkDesc\">\"Light,
+    zesty, and citrusy, this drink feels like a warm hug from a stylish aunt. Gin,
+    triple sec, and lemon juice create pure sophistication.\"</style>\n\n     <style=\"DrinkSprite\"><sprite
+    name=\"Negroni\"></style>\n\n\n<style=\"DrinkName>Negroni</style>\n\n<style=\"DrinkRecipe\">Gin:
+    1.0 oz\nCampari: 1.0 oz\nSweet Vermouth: 1.0 oz</style>\n\n<style=\"DrinkDesc\">\"Bittersweet
+    and refined, this gin, Campari, and vermouth combo is for those who know that
+    life\u2019s a mix of sugar and spice\u2026 with a hint of regret.\"</style>\n\n    
+    <style=\"DrinkSprite\"><sprite name=\"New_York_Sour\"></style>\n\n\n<style=\"DrinkName>New
+    York Sour</style>\n\n<style=\"DrinkRecipe\">Whiskey: 4.0 oz\nLemon Juice: 2.0
+    oz\nSimple Syrup: 1.5 oz\nRed Wine: 0.5 oz</style>\n\n<style=\"DrinkDesc\">\"A
+    layered masterpiece. Whiskey, lemon, and a splash of red wine create a drink
+    that\u2019s as bold and complex as the city it\u2019s named after.\"</style>"
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: f2c3ac3f2602ec54e92d136e05b5a8e5, type: 2}
+  m_sharedMaterial: {fileID: 8940501211584709506, guid: f2c3ac3f2602ec54e92d136e05b5a8e5, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 18
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 5
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 2
+  m_margin: {x: 0, y: 0.00003052248, z: 0, w: -0.000000031888092}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1292412883
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1292412881}
+  m_CullTransparentMesh: 1
+--- !u!224 &1292412884
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1292412881}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1873244405}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -0.000022888184}
+  m_SizeDelta: {x: 250, y: 285}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1339243418
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1339243419}
+  m_Layer: 0
+  m_Name: Audio Sources
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1339243419
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1339243418}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 912.46594, y: 740.12744, z: 2.5662646}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1874131319}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1407129736
 GameObject:
   m_ObjectHideFlags: 0
@@ -1132,6 +1707,395 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1407129736}
   m_CullTransparentMesh: 1
+--- !u!1 &1445835997
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1445835998}
+  - component: {fileID: 1445835999}
+  m_Layer: 5
+  m_Name: RecipeBookWindow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1445835998
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1445835997}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1179630655}
+  m_Father: {fileID: 1600456438}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1445835999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1445835997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f01422b50528bf4db9a008d7ce5bb9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  content: "     <style=\"DrinkSprite\"><sprite name=\"Margarita\"></style>\n\n\n<style=\"DrinkName>Margarita</style>\n\n<style=\"DrinkRecipe\">Tequila:
+    1.5 oz\nLime Juice: 1.0 oz\nTriple Sec: 0.5 oz </style>\n\n<style=\"DrinkDesc\">\"The
+    ultimate vacation in a glass. With tequila, lime juice, and triple sec, it\u2019s
+    like a summer breeze with a salty rim\u2014perfect for forgetting sunscreen woes!\"</style>\n\n    
+    <style=\"DrinkSprite\"><sprite name=\"Bloody_Mary\"></style>\n\n\n<style=\"DrinkName>Bloody
+    Mary</style>\n\n<style=\"DrinkRecipe\">Vodka: 1.5 oz\nTomato Juice: 3.0 oz\nLemon
+    Juice: 0.5 oz </style>\n\n<style=\"DrinkDesc\">\"Part cocktail, part tomato soup,
+    and 100% hangover cure. With vodka and tomato juice, it\u2019s practically a
+    vegetable smoothie. Add celery for crunch!\"</style>\n\n     <style=\"DrinkSprite\"><sprite
+    name=\"Cosmopolitan\"></style>\n\n\n<style=\"DrinkName>Cosmopolitan</style>\n\n<style=\"DrinkRecipe\">Vodka:
+    1.5 oz\nLime Juice: 0.5 oz\nCranberry Juice: 1.0 oz\nCointreau: 0.5 oz </style>\n\n<style=\"DrinkDesc\">\"Pink,
+    classy, and ready to steal the spotlight. Vodka, cranberry juice, and lime make
+    this a night-out essential\u2014and Instagram gold!\"</style>\n\n     <style=\"DrinkSprite\"><sprite
+    name=\"Vesper\"></style>\n\n\n<style=\"DrinkName>Vesper</style>\n\n<style=\"DrinkRecipe\">Gin:
+    1.5 oz\nVodka: 0.5 oz\nLillet Blanc: 0.25 oz</style>\n\n<style=\"DrinkDesc\">\"Shaken,
+    not stirred, and perfect for feeling like a secret agent. Gin, vodka, and Lillet
+    Blanc combine sophistication with a knockout punch.\"</style>\n\n     <style=\"DrinkSprite\"><sprite
+    name=\"Whiskey_Sour\"></style>\n\n\n<style=\"DrinkName>Whiskey Sour</style>\n\n<style=\"DrinkRecipe\">Whiskey:
+    2.0 oz\nLemon Juice: 0.75 oz\nSimple Syrup: 0.5 oz</style>\n\n<style=\"DrinkDesc\">\"Strong,
+    zesty, and a little sweet\u2014like your favorite bad decisions. Whiskey and
+    lemon juice make this a crowd-pleaser with a sour edge.\"</style>\n\n     <style=\"DrinkSprite\"><sprite
+    name=\"Paradise\"></style>\n\n\n<style=\"DrinkName>Paradise</style>\n\n<style=\"DrinkRecipe\">Gin:
+    2.0 oz\nBrandy: 1.5 oz\nOrange Juice: 1.0 oz</style>\n\n<style=\"DrinkDesc\">\"Fruity,
+    tropical, and dangerously smooth. With gin, brandy, and orange juice, it\u2019s
+    your one-way ticket to sipping on a beach (in your imagination).\"</style>\n\n    
+    <style=\"DrinkSprite\"><sprite name=\"French_75\"></style>\n\n\n<style=\"DrinkName>French
+    75</style>\n\n<style=\"DrinkRecipe\">Gin: 2.0 oz\nLemon Juice: 1.0 oz\nSimple
+    Syrup: 0.5 oz\nChampagne: 4.0 oz</style>\n\n<style=\"DrinkDesc\">\"Elegant and
+    bubbly, but don\u2019t let the fizz fool you\u2014this gin and champagne combo
+    packs a punch worthy of a battlefield cannon.\"</style>\n\n     <style=\"DrinkSprite\"><sprite
+    name=\"White_Lady\"></style>\n\n\n<style=\"DrinkName>White Lady</style>\n\n<style=\"DrinkRecipe\">Gin:
+    2.5 oz\nTriple Sec: 2.0 oz\nLemon Juice: 1.75 oz</style>\n\n<style=\"DrinkDesc\">\"Light,
+    zesty, and citrusy, this drink feels like a warm hug from a stylish aunt. Gin,
+    triple sec, and lemon juice create pure sophistication.\"</style>\n\n     <style=\"DrinkSprite\"><sprite
+    name=\"Negroni\"></style>\n\n\n<style=\"DrinkName>Negroni</style>\n\n<style=\"DrinkRecipe\">Gin:
+    1.0 oz\nCampari: 1.0 oz\nSweet Vermouth: 1.0 oz</style>\n\n<style=\"DrinkDesc\">\"Bittersweet
+    and refined, this gin, Campari, and vermouth combo is for those who know that
+    life\u2019s a mix of sugar and spice\u2026 with a hint of regret.\"</style>\n\n    
+    <style=\"DrinkSprite\"><sprite name=\"New_York_Sour\"></style>\n\n\n<style=\"DrinkName>New
+    York Sour</style>\n\n<style=\"DrinkRecipe\">Whiskey: 4.0 oz\nLemon Juice: 2.0
+    oz\nSimple Syrup: 1.5 oz\nRed Wine: 0.5 oz</style>\n\n<style=\"DrinkDesc\">\"A
+    layered masterpiece. Whiskey, lemon, and a splash of red wine create a drink
+    that\u2019s as bold and complex as the city it\u2019s named after.\"</style>"
+  leftSide: {fileID: 1501091997}
+  rightSide: {fileID: 1292412882}
+  leftPagination: {fileID: 1832123660}
+  rightPagination: {fileID: 584362299}
+--- !u!1 &1501091996
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1501091999}
+  - component: {fileID: 1501091998}
+  - component: {fileID: 1501091997}
+  m_Layer: 5
+  m_Name: Left Text Box
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1501091997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1501091996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: "     <style=\"DrinkSprite\"><sprite name=\"Margarita\"></style>\n\n\n<style=\"DrinkName>Margarita</style>\n\n<style=\"DrinkRecipe\">Tequila:
+    1.5 oz\nLime Juice: 1.0 oz\nTriple Sec: 0.5 oz </style>\n\n<style=\"DrinkDesc\">\"The
+    ultimate vacation in a glass. With tequila, lime juice, and triple sec, it\u2019s
+    like a summer breeze with a salty rim\u2014perfect for forgetting sunscreen woes!\"</style>\n\n    
+    <style=\"DrinkSprite\"><sprite name=\"Bloody_Mary\"></style>\n\n\n<style=\"DrinkName>Bloody
+    Mary</style>\n\n<style=\"DrinkRecipe\">Vodka: 1.5 oz\nTomato Juice: 3.0 oz\nLemon
+    Juice: 0.5 oz </style>\n\n<style=\"DrinkDesc\">\"Part cocktail, part tomato soup,
+    and 100% hangover cure. With vodka and tomato juice, it\u2019s practically a
+    vegetable smoothie. Add celery for crunch!\"</style>\n\n     <style=\"DrinkSprite\"><sprite
+    name=\"Cosmopolitan\"></style>\n\n\n<style=\"DrinkName>Cosmopolitan</style>\n\n<style=\"DrinkRecipe\">Vodka:
+    1.5 oz\nLime Juice: 0.5 oz\nCranberry Juice: 1.0 oz\nCointreau: 0.5 oz </style>\n\n<style=\"DrinkDesc\">\"Pink,
+    classy, and ready to steal the spotlight. Vodka, cranberry juice, and lime make
+    this a night-out essential\u2014and Instagram gold!\"</style>\n\n     <style=\"DrinkSprite\"><sprite
+    name=\"Vesper\"></style>\n\n\n<style=\"DrinkName>Vesper</style>\n\n<style=\"DrinkRecipe\">Gin:
+    1.5 oz\nVodka: 0.5 oz\nLillet Blanc: 0.25 oz</style>\n\n<style=\"DrinkDesc\">\"Shaken,
+    not stirred, and perfect for feeling like a secret agent. Gin, vodka, and Lillet
+    Blanc combine sophistication with a knockout punch.\"</style>\n\n     <style=\"DrinkSprite\"><sprite
+    name=\"Whiskey_Sour\"></style>\n\n\n<style=\"DrinkName>Whiskey Sour</style>\n\n<style=\"DrinkRecipe\">Whiskey:
+    2.0 oz\nLemon Juice: 0.75 oz\nSimple Syrup: 0.5 oz</style>\n\n<style=\"DrinkDesc\">\"Strong,
+    zesty, and a little sweet\u2014like your favorite bad decisions. Whiskey and
+    lemon juice make this a crowd-pleaser with a sour edge.\"</style>\n\n     <style=\"DrinkSprite\"><sprite
+    name=\"Paradise\"></style>\n\n\n<style=\"DrinkName>Paradise</style>\n\n<style=\"DrinkRecipe\">Gin:
+    2.0 oz\nBrandy: 1.5 oz\nOrange Juice: 1.0 oz</style>\n\n<style=\"DrinkDesc\">\"Fruity,
+    tropical, and dangerously smooth. With gin, brandy, and orange juice, it\u2019s
+    your one-way ticket to sipping on a beach (in your imagination).\"</style>\n\n    
+    <style=\"DrinkSprite\"><sprite name=\"French_75\"></style>\n\n\n<style=\"DrinkName>French
+    75</style>\n\n<style=\"DrinkRecipe\">Gin: 2.0 oz\nLemon Juice: 1.0 oz\nSimple
+    Syrup: 0.5 oz\nChampagne: 4.0 oz</style>\n\n<style=\"DrinkDesc\">\"Elegant and
+    bubbly, but don\u2019t let the fizz fool you\u2014this gin and champagne combo
+    packs a punch worthy of a battlefield cannon.\"</style>\n\n     <style=\"DrinkSprite\"><sprite
+    name=\"White_Lady\"></style>\n\n\n<style=\"DrinkName>White Lady</style>\n\n<style=\"DrinkRecipe\">Gin:
+    2.5 oz\nTriple Sec: 2.0 oz\nLemon Juice: 1.75 oz</style>\n\n<style=\"DrinkDesc\">\"Light,
+    zesty, and citrusy, this drink feels like a warm hug from a stylish aunt. Gin,
+    triple sec, and lemon juice create pure sophistication.\"</style>\n\n     <style=\"DrinkSprite\"><sprite
+    name=\"Negroni\"></style>\n\n\n<style=\"DrinkName>Negroni</style>\n\n<style=\"DrinkRecipe\">Gin:
+    1.0 oz\nCampari: 1.0 oz\nSweet Vermouth: 1.0 oz</style>\n\n<style=\"DrinkDesc\">\"Bittersweet
+    and refined, this gin, Campari, and vermouth combo is for those who know that
+    life\u2019s a mix of sugar and spice\u2026 with a hint of regret.\"</style>\n\n    
+    <style=\"DrinkSprite\"><sprite name=\"New_York_Sour\"></style>\n\n\n<style=\"DrinkName>New
+    York Sour</style>\n\n<style=\"DrinkRecipe\">Whiskey: 4.0 oz\nLemon Juice: 2.0
+    oz\nSimple Syrup: 1.5 oz\nRed Wine: 0.5 oz</style>\n\n<style=\"DrinkDesc\">\"A
+    layered masterpiece. Whiskey, lemon, and a splash of red wine create a drink
+    that\u2019s as bold and complex as the city it\u2019s named after.\"</style>"
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: f2c3ac3f2602ec54e92d136e05b5a8e5, type: 2}
+  m_sharedMaterial: {fileID: 8940501211584709506, guid: f2c3ac3f2602ec54e92d136e05b5a8e5, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 18
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 5
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0.00003052248, z: 0, w: -0.000000031888092}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1501091998
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1501091996}
+  m_CullTransparentMesh: 1
+--- !u!224 &1501091999
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1501091996}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 430020776}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -0.000015259, y: 0.000011444}
+  m_SizeDelta: {x: 250, y: 285}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1591879664
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1591879665}
+  - component: {fileID: 1591879668}
+  - component: {fileID: 1591879667}
+  - component: {fileID: 1591879666}
+  m_Layer: 5
+  m_Name: PreviousPage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1591879665
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1591879664}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 430020776}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -10}
+  m_SizeDelta: {x: 265, y: 314}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1591879666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1591879664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1445835999}
+          m_TargetAssemblyTypeName: RecipeBookContents, MainScripts
+          m_MethodName: PreviousPage
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
+        - m_Target: {fileID: 1874131320}
+          m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+          m_MethodName: PlayOneShot
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 8300000, guid: 5357b96bbfba31f4488f7538089ef29a, type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &1591879667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1591879664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.78867924, g: 0, b: 0, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1591879668
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1591879664}
+  m_CullTransparentMesh: 1
 --- !u!1 &1600456434
 GameObject:
   m_ObjectHideFlags: 0
@@ -1233,6 +2197,7 @@ RectTransform:
   - {fileID: 1407129737}
   - {fileID: 1791732770}
   - {fileID: 1235765600}
+  - {fileID: 1445835998}
   - {fileID: 353889089}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1286,6 +2251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startButton: {fileID: 1088785658}
+  recipeBookPanel: {fileID: 1445835997}
 --- !u!1 &1791732769
 GameObject:
   m_ObjectHideFlags: 0
@@ -1380,6 +2346,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1874131320}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: PlayOneShot
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: e59edba8c465a26459e21521b32b8fe0, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1791732772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1418,6 +2396,306 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1791732769}
   m_CullTransparentMesh: 1
+--- !u!1 &1832123659
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1832123662}
+  - component: {fileID: 1832123661}
+  - component: {fileID: 1832123660}
+  m_Layer: 5
+  m_Name: Pagination Left
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1832123660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1832123659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: 1
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: f2c3ac3f2602ec54e92d136e05b5a8e5, type: 2}
+  m_sharedMaterial: {fileID: 8940501211584709506, guid: f2c3ac3f2602ec54e92d136e05b5a8e5, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 11
+  m_fontSizeBase: 11
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 267.17294, z: 0, w: -0.000000031888092}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1832123661
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1832123659}
+  m_CullTransparentMesh: 1
+--- !u!224 &1832123662
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1832123659}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 430020776}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.000030518, y: -19.99999}
+  m_SizeDelta: {x: 250, y: 285}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1873244404
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1873244405}
+  m_Layer: 5
+  m_Name: RightPage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1873244405
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1873244404}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1292412884}
+  - {fileID: 584362301}
+  - {fileID: 804741759}
+  m_Father: {fileID: 1179630655}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 140, y: 30}
+  m_SizeDelta: {x: 250, y: 285}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1874131318
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1874131319}
+  - component: {fileID: 1874131320}
+  m_Layer: 0
+  m_Name: Audio Source
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1874131319
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1874131318}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1339243419}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1874131320
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1874131318}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1981098111
 GameObject:
   m_ObjectHideFlags: 0
@@ -1631,3 +2909,4 @@ SceneRoots:
   - {fileID: 1600456438}
   - {fileID: 1981098114}
   - {fileID: 1681480773}
+  - {fileID: 1339243419}

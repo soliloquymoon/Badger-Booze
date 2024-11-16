@@ -1,25 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
-public class MenuScene : MonoBehaviour
+public class GameUIManager : MonoBehaviour
 {
-
+    
     private CanvasGroup fadeGroup;
     // Start is called before the first frame update
 
-    private float fadeInSpeed = 0.23f;
-    private float fadeOutSpeed = 0.33f;
-
-    private bool isStartingGame = false;
-    private float startClickTimeStamp;
-    public Button startButton;
     public GameObject recipeBookPanel;
 
 
-
+    private float fadeSpeed = 0.25f;
+    
     private void Start() {
     //Grab the only CanvasGroup in the scene    
     fadeGroup = FindObjectOfType<CanvasGroup>();
@@ -28,33 +21,14 @@ public class MenuScene : MonoBehaviour
     fadeGroup.alpha = 1;  
     }
 
-
-
     // Update is called once per frame
     void Update()
     {
-
         //Fade-in
-        fadeGroup.alpha = 1 - Time.timeSinceLevelLoad * fadeInSpeed;
-        
-        if (isStartingGame == true) {
-            Debug.Log("isStartingGame == true");
-            fadeGroup.alpha += (Time.time - startClickTimeStamp) * fadeOutSpeed;
-
-            if (fadeGroup.alpha >= 1) {
-                SceneManager.LoadScene("GameScene");
-            }
-        }   
+        fadeGroup.alpha = 1 - Time.timeSinceLevelLoad * fadeSpeed;
     }
 
-    //Buttons
-    public void OnStartClick() {
-        Debug.Log("Start Button clicked. Game start.");
-        isStartingGame = true;
-        startClickTimeStamp = Time.time;
-        startButton.interactable = false;
-    }
-
+    //Button Manager
     public void OnSettingsClick() {
         Debug.Log("Settings Button clicked. Enter Settings Window.");
         //TODO implement functionality and window
@@ -94,6 +68,4 @@ public class MenuScene : MonoBehaviour
                 //TODO implement functionality and window
 
     }
-
-    
 }
