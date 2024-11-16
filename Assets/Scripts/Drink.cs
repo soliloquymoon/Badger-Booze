@@ -19,10 +19,10 @@ public class Drink {
     }
 
     /*
-     * Used for creating Drink objects served by the player, no need for a drink name
+     * Used for creating Drink objects served by the player, starting with empty dictionary
      */
-    public Drink(Dictionary<string, float> ingredients) {
-        this.ingredients = ingredients;
+    public Drink() {
+        this.ingredients = new Dictionary<string, float>();
     }
 
     public string getName() {
@@ -31,5 +31,26 @@ public class Drink {
 
     public Dictionary<string, float> getIngredients() {
         return ingredients;
+    }
+
+    /*
+     * addIngredient: Adds an ingredient to the ingredients dictionary if not present,
+     * updates its quantity incremented by 0.0001f otherwise.
+     */
+    public void addIngredient(string ingredientName) {
+        if (ingredients.ContainsKey(ingredientName)) {
+            ingredients[ingredientName] += 0.0001f;
+        } else {
+            ingredients.Add(ingredientName, 0.0001f);
+        }
+        Debug.Log(ingredientName + " is " + ingredients[ingredientName]);
+    }
+
+    /*
+     * reset: Resets the ingredients dictionary to an empty state.
+     * This method is called when a new customer walks in.
+     */
+    public void reset() {
+        this.ingredients = new Dictionary<string, float>();
     }
 }

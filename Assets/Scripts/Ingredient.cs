@@ -6,21 +6,32 @@ using UnityEngine.UI;
 
 public class Ingredient : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
+    private GameObject customer;
     private RectTransform rectTransform;
     private Vector3 originalPosition;
     private Transform originalParent;
     private Canvas canvas;
     private int originalSiblingIndex;
     private Animator animator;
+    private Image image;
+    private Coroutine pouring;
 
-
+    public Ingredient(string name)
+    {
+        this.name = name;
+    }
     void Start()
     {
-        // Initialize references for RectTransform, parent, canvas, and animator
+        // Initialize references for RectTransform, parent, canvas, animator, and image
         rectTransform = this.GetComponent<RectTransform>();
         originalParent = this.transform.parent;
         canvas = this.GetComponentInParent<Canvas>();
         animator = this.GetComponent<Animator>();
+        image = this.GetComponent<Image>();
+        image.SetNativeSize();
+
+        // Find customer object
+        customer = GameObject.FindGameObjectWithTag("Customer");
     }
 
     /*
@@ -60,26 +71,50 @@ public class Ingredient : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
 
     /*
      * OnTriggerEnter2D: Called when the ingredient object enters a 2D collision with another object.
-     * If the other object has the "Shaker" tag and is currently a child of the canvas,
-     * start the "Ingredient_Pour" animation.
+     * If the other object has the "Shaker" tag and is currently a child of the canvas, this method
+     * 1) starts the "Ingredient_Pour" animation
+     * 2) and start a coroutine to add the ingredient.
      */
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Shaker") && this.rectTransform.parent == canvas.transform)
         {
             animator.SetBool("Pour", true);
+            pouring = StartCoroutine(addIngredient(customer.GetComponent<Customer>().getMixingDrink()));
         }
     }
 
     /*
      * OnTriggerExit2D: Called when the ingredient object exits a 2D collision with another object.
-     * If the other object has the "Shaker" tag, start the "Ingredient_Return" animation.
+     * If the other object has the "Shaker" tag, this method
+     * 1) switches the animation from "Ingredient_Pour" to "Ingredient_Return"
+     * 3) cancels the ingredient-adding coroutine
      */
     void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Shaker"))
         {
             animator.SetBool("Pour", false);
+            if (pouring != null) {
+                StopCoroutine(pouring);
+                pouring = null;
+            }
+        }
+    }
+
+    /*
+    * addIngredient: Coroutine that continuously adds an ingredient to the Drink object.
+    * 
+    * This method is executed as a coroutine, which allows for a delay between each addition.
+    * It runs indefinitely and repeatedly calls `addIngredient()` on the `drink` object,
+    * passing the name of the current object (=ingredient) each time.
+    * 
+    * It has a very short delay (0.001f), causing the ingredient to be added at a very high frequency.
+    */
+    IEnumerator addIngredient(Drink drink) {
+        while (true) {
+            yield return new WaitForSeconds(0.0001f);
+            drink.addIngredient(this.name);
         }
     }
 }
