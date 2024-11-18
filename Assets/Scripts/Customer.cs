@@ -37,6 +37,9 @@ public class Customer : MonoBehaviour
     private GameObject bartendingScene;
     private GameState gameState;
 
+    // Drink being mixed for the customer
+    private Drink mixingDrink;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -79,6 +82,9 @@ public class Customer : MonoBehaviour
 
         customerMood.SetActive(false);  // Hide the customer mood initially
         dialogueBox.SetActive(false); // Hide the dialogue box initially
+
+        // Initialize the mixing drink
+        mixingDrink = new Drink();
     }
 
     // Update is called once per frame
@@ -147,9 +153,12 @@ public class Customer : MonoBehaviour
         // Reset dialogue and mood
         SetDialogueText(currentOrder.getCustomerOrder());
         SetCustomerMoodText(moodScore + "%");
+
+        // Reset drink
+        mixingDrink.reset();
     }
 
-    public void EnterBartendingScene() {
+    public void EnterIngredientScene() {
         bartendingScene.SetActive(true);
         customerScene.SetActive(false);
     }
@@ -173,5 +182,9 @@ public class Customer : MonoBehaviour
 
     public void SetCustomerMoodText(string text) {
         customerMoodText.text = text;
+    }
+
+    public Drink getMixingDrink() {
+        return this.mixingDrink;
     }
 }
