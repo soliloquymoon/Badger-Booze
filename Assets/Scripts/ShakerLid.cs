@@ -2,20 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShakerLid : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
     private RectTransform rectTransform;
     private Vector3 originalPosition;
-    private Canvas canvas;
     private bool finishMixing;
+    private GameObject closedShaker;
+    private GameObject openShaker;
+    private GameObject ingredients;
 
     void Start()
     {
         // Initialize references to RectTransform, parent Canvas, and the finishMixing flag
         rectTransform = this.GetComponent<RectTransform>();
         finishMixing = false;
-        canvas = this.GetComponentInParent<Canvas>();
+        openShaker = GameObject.FindGameObjectWithTag("Open Shaker");
+        closedShaker = GameObject.FindGameObjectWithTag("Closed Shaker");
+        closedShaker.SetActive(false);
+        ingredients = GameObject.FindGameObjectWithTag("Ingredients");
     }
 
     /*
@@ -45,8 +51,12 @@ public class ShakerLid : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
     public void OnEndDrag(PointerEventData eventData)
     {
         this.rectTransform.anchoredPosition = originalPosition;
-        // if (finishMixing)
-            // TODO: Move to the shaking/pouring scene
+        if (finishMixing) {
+            Debug.Log("Shaker Closed!");
+            closedShaker.SetActive(true);
+            openShaker.SetActive(false);
+            ingredients.SetActive(false);
+        }
     }
 
     /*
@@ -58,7 +68,6 @@ public class ShakerLid : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
     {
         if (other.gameObject.CompareTag("Shaker Lid"))
         {
-            Debug.Log("Shaker Closed!");
             finishMixing = true;
         }
     }
