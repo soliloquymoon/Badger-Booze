@@ -2,45 +2,57 @@ using UnityEngine;
 
 public class ShakeDetector : MonoBehaviour
 {
-    private Animator shakerAnimator; // Reference to the Animator component
-    public float shakeThreshold = 2.5f; // Adjust sensitivity (higher = less sensitive)
+    private Animator shakerAnimator;
+    public float shakeThreshold = 2.5f; // Sensitivity
     public float cooldownTime = 1.0f; // Time before another shake can trigger
-
     private float lastShakeTime;
 
-    private void Start()
+    void Start()
     {
-        // Automatically find the Animator component on the same GameObject
         shakerAnimator = GetComponent<Animator>();
-
         if (shakerAnimator == null)
         {
-            Debug.LogError("No Animator component found on this GameObject!");
+            Debug.LogError("Animator not found on this GameObject!");
+        }
+        else
+        {
+            Debug.Log("Animator assigned successfully");
         }
     }
 
     void Update()
     {
-        // Get the device's acceleration
+        #if UNITY_EDITOR
+        // Simulate a shake in the Unity Editor (e.g., press the Space key)
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+             Debug.Log("Space bar pressed in Editor");
+            TriggerShakeAnimation();
+        }
+        #else
+        // Actual accelerometer logic for mobile devices
         Vector3 acceleration = Input.acceleration;
-
-        // Calculate the magnitude of the acceleration
         float accelerationMagnitude = acceleration.sqrMagnitude;
 
-        // If the magnitude exceeds the threshold and cooldown has passed
         if (accelerationMagnitude > shakeThreshold && Time.time - lastShakeTime > cooldownTime)
         {
+            Debug.Log("Shake detected on mobile");
             TriggerShakeAnimation();
-            lastShakeTime = Time.time; // Reset the cooldown
+            lastShakeTime = Time.time;
         }
+        #endif
     }
 
     private void TriggerShakeAnimation()
     {
         if (shakerAnimator != null)
         {
-            // Set the Shake trigger in the Animator
             shakerAnimator.SetTrigger("Shake");
+            Debug.Log("Shake trigger set!");
+        }
+        else
+        {
+            Debug.LogError("Animator not assigned or found!");
         }
     }
 }
