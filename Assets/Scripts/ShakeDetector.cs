@@ -26,7 +26,7 @@ public class ShakeDetector : MonoBehaviour
         // Simulate a shake in the Unity Editor (e.g., press the Space key)
         if (Input.GetKeyDown(KeyCode.Space))
         {
-             Debug.Log("Space bar pressed in Editor");
+            Debug.Log("Space bar pressed in Editor");
             TriggerShakeAnimation();
         }
         #else
