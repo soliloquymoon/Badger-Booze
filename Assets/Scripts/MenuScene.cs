@@ -14,9 +14,14 @@ public class MenuScene : MonoBehaviour
     private float fadeOutSpeed = 0.33f;
 
     private bool isStartingGame = false;
+
+    private bool recipeIsOn = false;
     private float startClickTimeStamp;
     public Button startButton;
     public GameObject recipeBookPanel;
+    public GameObject ingredientListPanel;
+
+    public GameObject settingsPanel;
 
 
 
@@ -57,16 +62,35 @@ public class MenuScene : MonoBehaviour
 
     public void OnSettingsClick() {
         Debug.Log("Settings Button clicked. Enter Settings Window.");
-        //TODO implement functionality and window
+        if(settingsPanel.activeSelf == false) {
+            if(recipeBookPanel.activeSelf == true || ingredientListPanel.activeSelf == true || recipeIsOn == true) {
+                Debug.Log("Other windows have to be closed first before opening Settings window.");
+                //TODO Implement a warning message UI for this condition
+            } else {
+                //StartCoroutine(TurnOnRecipeBook(0.35f));
+                settingsPanel.SetActive(true);
+            }
+            
+        } else {
+            //StartCoroutine(TurnOffRecipeBook(0.35f));
+            settingsPanel.SetActive(false);
+
+        }
     }
 
     public void OnRecipeClick() {
         Debug.Log("Recipe Book Button clicked. Enter Recipe Window.");
         if(recipeBookPanel.activeSelf == false) {
-            StartCoroutine(TurnOnRecipeBook(0.35f));
+            if(ingredientListPanel.activeSelf == true || settingsPanel.activeSelf == true) {
+                Debug.Log("Other windows have to be closed first before opening Recipe window.");
+                //TODO Implement a warning message UI for this condition
+            } else {
+                recipeIsOn = true;
+                StartCoroutine(TurnOnRecipeBook(0.35f));
+            }
         } else {
+            recipeIsOn = false;
             StartCoroutine(TurnOffRecipeBook(0.35f));
-
         }
 
     }
@@ -91,8 +115,20 @@ public class MenuScene : MonoBehaviour
 
     public void OnIngredientsClick() {
         Debug.Log("Ingredients Button clicked. Enter Ingredients Window.");
-                //TODO implement functionality and window
+        if(ingredientListPanel.activeSelf == false) {
+            if(recipeBookPanel.activeSelf == true || settingsPanel.activeSelf == true || recipeIsOn == true) {
+                Debug.Log("Other windows have to be closed first before opening Ingredients window.");
+                //TODO Implement a warning message UI for this condition
+            } else {
+                //StartCoroutine(TurnOnRecipeBook(0.35f));
+                ingredientListPanel.SetActive(true);
+            }
+            
+        } else {
+            //StartCoroutine(TurnOffRecipeBook(0.35f));
+            ingredientListPanel.SetActive(false);
 
+        }
     }
 
     
