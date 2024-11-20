@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,7 +23,17 @@ public class GameState : MonoBehaviour
         } else {
             barMoney = 999999f;
         }
-        moneyUI.text = "$" + barMoney.ToString("000,000");
+        moneyUI.text = "$" + barMoney.ToString("###,###");
+    }
+
+    // Called when ingredients are used or new ingredients are unlocked.
+    public void DeductMoney(float amount) {
+        if(barMoney - amount < 0f) {
+            throw new Exception("Not enough money.");
+        } else {
+            barMoney -= amount;
+        }
+        moneyUI.text = "$" + barMoney.ToString("###,###");
     }
 
     // Use to start or resume game time.
@@ -52,13 +64,13 @@ public class GameState : MonoBehaviour
         currentTime = 1080.0f; // Starts at 6PM, equivalent to 1080 minutes
         endTime = 1560.0f;  // Ends at 2AM, equivalent to 1560 minutes
         timeOfDay = "PM";
-        barMoney = 0.0f;    // TODO: Retrieve from save instead (Save per day?)
+        barMoney = 500.0f;    // TODO: Retrieve from save instead (Save per day?)
 
         // Get UI components
         clockUI = GameObject.Find("TimeText").GetComponent<Text>();
         clockUI.text = "08:00 AM";
         moneyUI = GameObject.Find("MoneyText").GetComponent<Text>();
-        moneyUI.text = "$" + barMoney.ToString("000,000");
+        moneyUI.text = "$" + barMoney.ToString("###,###");
 
         // Get Customer
         currentCustomer = GameObject.Find("Customer");

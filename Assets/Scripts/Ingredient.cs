@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class Ingredient : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
-    private GameObject customer;
+    private Customer customer;
     private RectTransform rectTransform;
     private Vector3 originalPosition;
     private Transform originalParent;
@@ -15,6 +15,7 @@ public class Ingredient : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
     private Animator animator;
     private Image image;
     private Coroutine pouring;
+    private GameState gameState;
 
     public Ingredient(string name)
     {
@@ -30,8 +31,9 @@ public class Ingredient : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
         image = this.GetComponent<Image>();
         image.SetNativeSize();
 
-        // Find customer object
-        customer = GameObject.FindGameObjectWithTag("Customer");
+        // Find customer, GameState, and receipt objects
+        customer = GameObject.FindGameObjectWithTag("Customer").GetComponent<Customer>();
+        gameState = GameObject.FindGameObjectWithTag("GameState").GetComponent<GameState>();
     }
 
     /*
@@ -80,7 +82,7 @@ public class Ingredient : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
         if (other.gameObject.CompareTag("Shaker") && this.rectTransform.parent == canvas.transform)
         {
             animator.SetBool("Pour", true);
-            pouring = StartCoroutine(addIngredient(customer.GetComponent<Customer>().getMixingDrink()));
+            pouring = StartCoroutine(AddIngredient(customer.GetMixingDrink()));
         }
     }
 
@@ -103,7 +105,7 @@ public class Ingredient : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
     }
 
     /*
-    * addIngredient: Coroutine that continuously adds an ingredient to the Drink object.
+    * AddIngredient: Coroutine that continuously adds an ingredient to the Drink object.
     * 
     * This method is executed as a coroutine, which allows for a delay between each addition.
     * It runs indefinitely and repeatedly calls `addIngredient()` on the `drink` object,
@@ -111,10 +113,12 @@ public class Ingredient : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
     * 
     * It has a very short delay (0.001f), causing the ingredient to be added at a very high frequency.
     */
-    IEnumerator addIngredient(Drink drink) {
+    IEnumerator AddIngredient(Drink drink) {
         while (true) {
-            yield return new WaitForSeconds(0.0001f);
-            drink.addIngredient(this.name);
+            yield return new WaitForSecondsRealtime(0.0002f);
+            gameState.DeductMoney(0.0001f);
+            drink.AddIngredient(this.name);
+            customer.GetReceipt().SetText(drink, this.name);
         }
     }
 }

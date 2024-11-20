@@ -10,6 +10,8 @@ TagManager:
   - Closed Shaker
   - Open Shaker
   - Ingredients
+  - GameState
+  - Receipt
   layers:
   - Default
   - TransparentFX

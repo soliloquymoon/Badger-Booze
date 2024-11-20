@@ -34,10 +34,10 @@ public class Drink {
     }
 
     /*
-     * addIngredient: Adds an ingredient to the ingredients dictionary if not present,
+     * AddIngredient: Adds an ingredient to the ingredients dictionary if not present,
      * updates its quantity incremented by 0.0001f otherwise.
      */
-    public void addIngredient(string ingredientName) {
+    public void AddIngredient(string ingredientName) {
         if (ingredients.ContainsKey(ingredientName)) {
             ingredients[ingredientName] += 0.0001f;
         } else {
@@ -47,10 +47,10 @@ public class Drink {
     }
 
     /*
-     * reset: Resets the ingredients dictionary to an empty state.
+     * Reset: Resets the ingredients dictionary to an empty state.
      * This method is called when a new customer walks in.
      */
-    public void reset() {
+    public void Reset() {
         this.ingredients = new Dictionary<string, float>();
     }
 }

@@ -39,6 +39,7 @@ public class Customer : MonoBehaviour
 
     // Drink being mixed for the customer
     private Drink mixingDrink;
+    private Receipt receipt;
 
     // Start is called before the first frame update
     void Start()
@@ -85,6 +86,7 @@ public class Customer : MonoBehaviour
 
         // Initialize the mixing drink
         mixingDrink = new Drink();
+        receipt = GameObject.FindGameObjectWithTag("Receipt").GetComponent<Receipt>();
     }
 
     // Update is called once per frame
@@ -154,8 +156,9 @@ public class Customer : MonoBehaviour
         SetDialogueText(currentOrder.getCustomerOrder());
         SetCustomerMoodText(moodScore + "%");
 
-        // Reset drink
-        mixingDrink.reset();
+        // Reset drink and receipt
+        mixingDrink.Reset();
+        receipt.Reset();
     }
 
     public void EnterIngredientScene() {
@@ -184,7 +187,11 @@ public class Customer : MonoBehaviour
         customerMoodText.text = text;
     }
 
-    public Drink getMixingDrink() {
+    public Drink GetMixingDrink() {
         return this.mixingDrink;
+    }
+
+    public Receipt GetReceipt() {
+        return this.receipt;
     }
 }
