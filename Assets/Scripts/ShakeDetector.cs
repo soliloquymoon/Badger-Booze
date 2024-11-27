@@ -109,6 +109,11 @@ public class ShakeDetector : MonoBehaviour
 
     private void DetectTilt()
     {
+        if (shakerAnimator != null)
+        {
+            shakerAnimator.SetTrigger("Tilt");
+        }
+
         currentTilts++;
         UpdateProgressBar(tiltProgressBar, currentTilts, tiltsToComplete);
 
