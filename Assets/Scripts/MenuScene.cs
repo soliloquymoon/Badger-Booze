@@ -10,6 +10,8 @@ public class MenuScene : MonoBehaviour
     private CanvasGroup fadeGroup;
     // Start is called before the first frame update
 
+    private CanvasGroup dimFadeGroup;
+
     private float fadeInSpeed = 0.23f;
     private float fadeOutSpeed = 0.33f;
 
@@ -23,14 +25,26 @@ public class MenuScene : MonoBehaviour
 
     public GameObject settingsPanel;
 
+    public AudioSource source;
+    public AudioClip bookWindowSound;
+    public AudioClip ingredientWindowSound;
+    public AudioClip buttonPressSound;
+
 
 
     private void Start() {
     //Grab the only CanvasGroup in the scene    
-    fadeGroup = FindObjectOfType<CanvasGroup>();
+    //fadeGroup = FindObjectOfType<CanvasGroup>();
+    fadeGroup = GameObject.Find("Fade").GetComponent<CanvasGroup>();
+
+    //
+    dimFadeGroup = GameObject.Find("Dim").GetComponent<CanvasGroup>();
 
     //Start with a black screen
     fadeGroup.alpha = 1;  
+
+    //start dimFadeGroup alpha with 0
+    dimFadeGroup.alpha = 0;
     }
 
 
@@ -69,11 +83,13 @@ public class MenuScene : MonoBehaviour
             } else {
                 //StartCoroutine(TurnOnRecipeBook(0.35f));
                 settingsPanel.SetActive(true);
+                dimFadeGroup.alpha = 0.8F;
             }
             
         } else {
             //StartCoroutine(TurnOffRecipeBook(0.35f));
             settingsPanel.SetActive(false);
+            dimFadeGroup.alpha = 0;
 
         }
     }
@@ -98,19 +114,28 @@ public class MenuScene : MonoBehaviour
     IEnumerator TurnOnRecipeBook(float duration) {
         Debug.Log("Recipe Book Opened");
 
+        //play audio clip sfx
+        source.PlayOneShot(bookWindowSound);
+
+
         //wait
         yield return new WaitForSeconds(duration);
 
         recipeBookPanel.SetActive(true);
+        dimFadeGroup.alpha = 0.8F;
     }
 
     IEnumerator TurnOffRecipeBook(float duration) {
         Debug.Log("Recipe Book Closed");
 
+        //play audio clip sfx
+        source.PlayOneShot(bookWindowSound);
+
         //wait
         yield return new WaitForSeconds(duration);
 
         recipeBookPanel.SetActive(false);
+        dimFadeGroup.alpha = 0;
     }
 
     public void OnIngredientsClick() {
@@ -122,11 +147,13 @@ public class MenuScene : MonoBehaviour
             } else {
                 //StartCoroutine(TurnOnRecipeBook(0.35f));
                 ingredientListPanel.SetActive(true);
+                dimFadeGroup.alpha = 0.8F;
             }
             
         } else {
             //StartCoroutine(TurnOffRecipeBook(0.35f));
             ingredientListPanel.SetActive(false);
+            dimFadeGroup.alpha = 0;
 
         }
     }
