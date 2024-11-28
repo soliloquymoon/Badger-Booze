@@ -74,7 +74,7 @@ public class OrderManager {
         new Order("", "I’d love a * to start the night."),
         new Order("", "String cocktail = BadgerBooze();\nif (cocktail.equals(\"*\")) return true;\nelse return false;"),
         new Order("", "Log.i(“Order”, \"*\")"),
-        new Order("", "printf(\"Can I have a \" + \"*\""),
+        new Order("", "printf(\"Can I have a \" + \"*\")"),
 
         // Orders for drinks with a specific name
         new Order("Margarita", "Wasting away again in Margaritaville."),

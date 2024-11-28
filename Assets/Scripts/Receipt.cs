@@ -37,19 +37,8 @@ public class Receipt : MonoBehaviour
         } else {
             // Update the text of the existing Text object for the ingredient.
             texts[ingredientName].text = ingredientName + " --- " +
-            ConvertToMl(drink.getIngredients()[ingredientName]) + "ml";
+            drink.getIngredients()[ingredientName].ToString("F1") + "oz";
         }
-    }
-
-    /*
-     * ConvertToMl: Converts a raw amount (float) to milliliters (assuming 1 unit = 30ml).
-     * Parameters:
-     *   - amount: The original amount of the ingredient.
-     * Returns:
-     *    - A string representing the converted amount in milliliters, formatted to 1 decimal place.
-     */
-    string ConvertToMl(float amount) {
-        return (amount * 30).ToString("F1");
     }
 
     /*
