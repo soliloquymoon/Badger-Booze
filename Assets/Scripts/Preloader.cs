@@ -18,6 +18,16 @@ public class Preloader : MonoBehaviour
     fadeGroup.alpha = 1;  
 
 
+    if (PlayerPrefs.GetInt("FIRSTTIMEOPENING", 1) == 1) {
+        Debug.Log("First time opening");
+        PlayerPrefs.SetInt("FIRSTTIMEOPENING", 1); //just to let know the next scene that this time it is indeed the first time that the game is opened
+        PlayerPrefs.Save();
+    } else {
+        Debug.Log("Not first time opening");
+    }
+
+
+
 
 
     //Preload the game

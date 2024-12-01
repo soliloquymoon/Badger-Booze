@@ -15,8 +15,6 @@ public class RecipeBookContents : MonoBehaviour
     [SerializeField] private TMP_Text leftPagination;
     [SerializeField] private TMP_Text rightPagination;
 
-    public AudioSource bookContentAS;
-    public AudioClip pageTurnSFX;
 
     private void OnValidate() {
         UpdatePagination();
@@ -50,7 +48,8 @@ public class RecipeBookContents : MonoBehaviour
 
     public void PreviousPage(){
         if (leftSide.pageToDisplay > 1) {
-            bookContentAS.PlayOneShot(pageTurnSFX);
+            //bookContentAS.PlayOneShot(pageTurnSFX);
+            AudioManager.Instance.PlaySFX("PageTurn");
         }
 
         if(leftSide.pageToDisplay < 1) {
@@ -80,11 +79,15 @@ public class RecipeBookContents : MonoBehaviour
         if(leftSide.pageToDisplay >= leftSide.textInfo.pageCount -1) {
             leftSide.pageToDisplay = leftSide.textInfo.pageCount - 1;
             rightSide.pageToDisplay = leftSide.pageToDisplay + 1;
-            bookContentAS.PlayOneShot(pageTurnSFX);
+            //bookContentAS.PlayOneShot(pageTurnSFX);
+            AudioManager.Instance.PlaySFX("PageTurn");
+
         } else {
             leftSide.pageToDisplay += 2;
             rightSide.pageToDisplay = leftSide.pageToDisplay + 1;
-            bookContentAS.PlayOneShot(pageTurnSFX);
+            //bookContentAS.PlayOneShot(pageTurnSFX);
+            AudioManager.Instance.PlaySFX("PageTurn");
+
         }
 
         UpdatePagination();
