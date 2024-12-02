@@ -44,7 +44,7 @@ public class GameState : MonoBehaviour
         } else {
             barMoney = 999999f;
         }
-        moneyUI.text = "$" + barMoney.ToString("###,###");
+        moneyUI.text = "$" + barMoney.ToString("N2").TrimStart('0').TrimStart(',');
     }
 
     // Called when ingredients are used or new ingredients are unlocked.
@@ -52,7 +52,7 @@ public class GameState : MonoBehaviour
         barMoney -= amount;
         dailyCosts += amount;
         dailyNetIncome -= amount;
-        moneyUI.text = "$" + barMoney.ToString("###,###");
+        moneyUI.text = "$" + barMoney.ToString("N2").TrimStart('0').TrimStart(',');
     }
 
     // Use to start or resume game time.
@@ -179,7 +179,7 @@ public class GameState : MonoBehaviour
 
         }
         if(countTime) {
-            currentTime += Time.deltaTime * 1.25f * 30.0f;      // 1 minute in game time is equivalent to 0.8 seconds in real time.
+            currentTime += Time.deltaTime * 1.5f;      // 1 minute in game time is equivalent to 2/3 seconds in real time.
             clockUI.text = getTimeString();
         }
     }

@@ -116,10 +116,10 @@ public class Ingredient : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
     IEnumerator AddIngredient(Drink drink) {
         while (true) {
             yield return new WaitForSecondsRealtime(0.0002f);
-            gameState.DeductMoney(0.0001f);
             // Pour drink multiple times to make it seem faster
             for(int i = 0; i < 8; i++) {
                 drink.AddIngredient(this.name);
+                gameState.DeductMoney(0.0001f);
             }
             customer.GetReceipt().SetText(drink, this.name);
         }
