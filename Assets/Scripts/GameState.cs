@@ -11,8 +11,11 @@ public class GameState : MonoBehaviour
     private Text moneyUI { get; set; }
     private string timeOfDay { get; set; }
     private float currentTime { get; set; } 
+    private int currentDay { get; set; }
     private float endTime { get; set; }      
     private float barMoney { get; set; } 
+    private float dailyRevenue { get; set; } 
+    private float dailyCosts { get; set; } 
     private bool countTime = true;
     private GameObject currentCustomer;
 
@@ -20,6 +23,7 @@ public class GameState : MonoBehaviour
     public void AddMoney(float amount) {
         if(barMoney + amount <= 999999f) {
             barMoney += amount;
+            dailyRevenue += amount;
         } else {
             barMoney = 999999f;
         }
@@ -32,6 +36,7 @@ public class GameState : MonoBehaviour
             throw new Exception("Not enough money.");
         } else {
             barMoney -= amount;
+            dailyCosts += amount;
         }
         moneyUI.text = "$" + barMoney.ToString("###,###");
     }
@@ -64,11 +69,12 @@ public class GameState : MonoBehaviour
         currentTime = 1080.0f; // Starts at 6PM, equivalent to 1080 minutes
         endTime = 1560.0f;  // Ends at 2AM, equivalent to 1560 minutes
         timeOfDay = "PM";
-        barMoney = 500.0f;    // TODO: Retrieve from save instead (Save per day?)
+        barMoney = PlayerPrefs.GetFloat("barMoney", 500.0f);    // TODO: Retrieve from save instead (Save per day?)
+        currentDay = PlayerPrefs.GetInt("currentDay", 1);
 
         // Get UI components
         clockUI = GameObject.Find("TimeText").GetComponent<Text>();
-        clockUI.text = "08:00 AM";
+        clockUI.text = getTimeString();
         moneyUI = GameObject.Find("MoneyText").GetComponent<Text>();
         moneyUI.text = "$" + barMoney.ToString("###,###");
 
@@ -84,21 +90,32 @@ public class GameState : MonoBehaviour
         if(currentTime >= endTime) {
             countTime = false;
             currentCustomer.SetActive(false);
-            // TODO: Implement end of day, save game settings and time using PlayerPrefs
+            // TODO: Display summary with dailyRevenue and dailyCosts
+            // Update daily values
+            currentDay++;
+            dailyRevenue = 0;
+            dailyCosts = 0;
+            // Save game data at the end of day (Uses Native SharedPreferences for IOS or Android)
+            PlayerPrefs.SetInt("currentDay", currentDay);
+            PlayerPrefs.SetFloat("barMoney", barMoney);
         }
         if(countTime) {
             currentTime += Time.deltaTime * 1.25f;      // 1 minute in game time is equivalent to 0.8 seconds in real time.
-            int hour = Mathf.FloorToInt((currentTime / 60.0f));
-            // Convert to 12-hour format
-            if(hour != 12) {
-                hour %= 12;
-            }
-            // Switch to AM after midnight
-            if(hour == 0) {
-                timeOfDay = "AM";
-            }
-            int minute = Mathf.FloorToInt(currentTime % 60.0f);
-            clockUI.text = hour.ToString("00") + ":" + minute.ToString("00") + " " + timeOfDay;
+            clockUI.text = getTimeString();
         }
+    }
+
+    string getTimeString() {
+        int hour = Mathf.FloorToInt((currentTime / 60.0f));
+        // Convert to 12-hour format
+        if(hour != 12) {
+            hour %= 12;
+        }
+        // Switch to AM after midnight
+        if(hour == 0) {
+            timeOfDay = "AM";
+        }
+        int minute = Mathf.FloorToInt(currentTime % 60.0f);
+        return hour.ToString("00") + ":" + minute.ToString("00") + " " + timeOfDay;
     }
 }
