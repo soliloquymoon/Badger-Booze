@@ -4,11 +4,6 @@ using UnityEngine;
 
 
 public class DrinkManager : MonoBehaviour {
-    private GameState gameState;
-
-    void Start() {
-        gameState = GameObject.Find("GameState").GetComponent<GameState>();
-    }
     
     /*
      * Static list of all possible orders in the game
@@ -110,8 +105,6 @@ public class DrinkManager : MonoBehaviour {
         int closeness = (int)(100 * (1 - differenceRatio));
         // Ensure the score is between 0 and 100
         int score = Mathf.Clamp(closeness, 0, 100);
-        
-        gameState.AddMoney(score);
         return score;
     }
 }

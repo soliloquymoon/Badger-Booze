@@ -7,23 +7,36 @@ using UnityEngine.UI;
 
 public class GameState : MonoBehaviour
 {
-    private Text clockUI;
+    // UI Text Objects
+    private Text clockUI { get; set;}
     private Text moneyUI { get; set; }
+    private Text dayUI { get; set;}
+    private Text summaryUI { get; set;}
+
+    // Time and Money management (Persistent)
+    private bool countTime = true;
     private string timeOfDay { get; set; }
     private float currentTime { get; set; } 
     private int currentDay { get; set; }
     private float endTime { get; set; }      
     private float barMoney { get; set; } 
-    private float dailyRevenue { get; set; } 
-    private float dailyCosts { get; set; } 
-    private bool countTime = true;
+
+    // Daily bookkeeping
+    public float dailyRevenue { get; set; } 
+    public float dailyTips { get; set; }
+    public float dailyCosts { get; set; } 
+    public float dailyTotalScore {get; set;}
+    private float dailyNetIncome { get; set; }
+    private int dailyCustomersServed { get; set; }
     private GameObject currentCustomer;
+    private GameObject summaryObject;
 
     // Gets called by DrinksManager every time a drink score is calculated
     public void AddMoney(float amount) {
         if(barMoney + amount <= 999999f) {
             barMoney += amount;
             dailyRevenue += amount;
+            dailyNetIncome += amount;
         } else {
             barMoney = 999999f;
         }
@@ -37,6 +50,7 @@ public class GameState : MonoBehaviour
         } else {
             barMoney -= amount;
             dailyCosts += amount;
+            dailyNetIncome -= amount;
         }
         moneyUI.text = "$" + barMoney.ToString("###,###");
     }
@@ -56,6 +70,14 @@ public class GameState : MonoBehaviour
         currentCustomer.SetActive(true);
         currentTime = 1080.0f;
         timeOfDay = "PM";
+        dailyCosts = 0f;
+        dailyCustomersServed = 0;
+        dailyRevenue = 0f;
+        dailyTips = 0f;
+        dailyNetIncome = 0f;
+        dailyTotalScore = 0f;
+        currentDay++;
+        summaryObject.SetActive(false);
         countTime = true;
     }
 
@@ -69,15 +91,36 @@ public class GameState : MonoBehaviour
         currentTime = 1080.0f; // Starts at 6PM, equivalent to 1080 minutes
         endTime = 1560.0f;  // Ends at 2AM, equivalent to 1560 minutes
         timeOfDay = "PM";
-        barMoney = PlayerPrefs.GetFloat("barMoney", 500.0f);    // TODO: Retrieve from save instead (Save per day?)
+        barMoney = PlayerPrefs.GetFloat("barMoney", 500.0f);
         currentDay = PlayerPrefs.GetInt("currentDay", 1);
+        dailyCosts = 0f;
+        dailyCustomersServed = 0;
+        dailyRevenue = 0f;
+        dailyTips = 0f;
+        dailyNetIncome = 0f;
+        dailyTotalScore = 0f;
 
         // Get UI components
         clockUI = GameObject.Find("TimeText").GetComponent<Text>();
         clockUI.text = getTimeString();
         moneyUI = GameObject.Find("MoneyText").GetComponent<Text>();
         moneyUI.text = "$" + barMoney.ToString("###,###");
+        summaryUI = GameObject.Find("SummaryText").GetComponent<Text>();
+        dayUI = GameObject.Find("Day").GetComponent<Text>();
+        summaryObject = GameObject.Find("Summary");
+        summaryObject.SetActive(false);
+        string netIncomeSign = dailyNetIncome > 0 ? "+" : "-";
+        if(dailyNetIncome == 0) {
+            netIncomeSign = "";
+        }
+        summaryUI.text = $@"{dailyCustomersServed}
+        
+                                +${dailyRevenue}
+                                -${dailyCosts}
+                                +${dailyTips}
 
+                                <b>{netIncomeSign}${dailyNetIncome}</b>
+                                {getAverageScore()}/100";
         // Get Customer
         currentCustomer = GameObject.Find("Customer");
 
@@ -90,11 +133,29 @@ public class GameState : MonoBehaviour
         if(currentTime >= endTime) {
             countTime = false;
             currentCustomer.SetActive(false);
-            // TODO: Display summary with dailyRevenue and dailyCosts
+            // Display end of day summary
+            dayUI.text = $"Day {currentDay}";
+            string netIncomeSign = dailyNetIncome > 0 ? "+" : "-";
+            if(dailyNetIncome == 0) {
+                netIncomeSign = "";
+            }
+            summaryUI.text = $@"{dailyCustomersServed}
+        
+                                    +${dailyRevenue}
+                                    -${dailyCosts}
+                                    +${dailyTips}
+
+                                    <b>{netIncomeSign}${dailyNetIncome}</b>
+                                    {getAverageScore()}/100";
+            summaryObject.SetActive(true);
+            
             // Update daily values
-            currentDay++;
-            dailyRevenue = 0;
-            dailyCosts = 0;
+            dailyCosts = 0f;
+            dailyCustomersServed = 0;
+            dailyRevenue = 0f;
+            dailyTips = 0f;
+            dailyNetIncome = 0f;
+            dailyTotalScore = 0f;
             // Save game data at the end of day (Uses Native SharedPreferences for IOS or Android)
             PlayerPrefs.SetInt("currentDay", currentDay);
             PlayerPrefs.SetFloat("barMoney", barMoney);
@@ -117,5 +178,11 @@ public class GameState : MonoBehaviour
         }
         int minute = Mathf.FloorToInt(currentTime % 60.0f);
         return hour.ToString("00") + ":" + minute.ToString("00") + " " + timeOfDay;
+    }
+
+    int getAverageScore() {
+        return dailyCustomersServed > 0
+            ? (int)Math.Round(Math.Clamp(dailyTotalScore / dailyCustomersServed, 0, 100))
+            : 0;
     }
 }
