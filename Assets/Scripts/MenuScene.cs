@@ -27,10 +27,6 @@ public class MenuScene : MonoBehaviour
 
     public GameObject settingsPanel;
 
-    public AudioSource source;
-    public AudioClip ingredientWindowSound;
-    public AudioClip buttonPressSound;
-
 
 
     private void Start() {
@@ -70,6 +66,7 @@ public class MenuScene : MonoBehaviour
     //Buttons
     public void OnStartClick() {
         Debug.Log("Start Button clicked. Game start.");
+        AudioManager.Instance.PlaySFX("ButtonClick");
         isStartingGame = true;
         startClickTimeStamp = Time.time;
         startButton.interactable = false;
@@ -98,6 +95,7 @@ public class MenuScene : MonoBehaviour
 
     public void OnExitSettingsClick() {
         Debug.Log("Settings exit button clicked, settings window closed.");
+        AudioManager.Instance.PlaySFX("ButtonClick");
         settingsPanel.SetActive(false);
         dimFadeGroup.alpha = 0;
     }
@@ -138,7 +136,6 @@ public class MenuScene : MonoBehaviour
         Debug.Log("Recipe Book Closed");
 
         //play audio clip sfx
-        //source.PlayOneShot(bookWindowSound);
         AudioManager.Instance.PlaySFX("BookOpen");
 
 
@@ -202,7 +199,8 @@ public class MenuScene : MonoBehaviour
         dimFadeGroup.alpha = 0;
     }
 
-    //TODO Might delete?
+    //TODO Only for Play Mode purposes to check tutorial functionality, 
+    //must delete later for actual build
     void OnApplicationQuit() {
         PlayerPrefs.DeleteAll();
     }

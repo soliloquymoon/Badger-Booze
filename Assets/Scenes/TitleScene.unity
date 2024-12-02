@@ -4088,7 +4088,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicSounds:
-  - name: Theme
+  - name: TitleTheme
     clip: {fileID: 8300000, guid: c0ea703c6b9112941a24ca68403ac763, type: 3}
   sfxSounds:
   - name: ButtonClick

@@ -2,24 +2,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
     public Sound[] musicSounds, sfxSounds;
     public AudioSource musicSource, sfxSource;
+    private Scene currScene;
+    
+
 
     private void Awake() {
         if (Instance == null) {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         } else {
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
     }
 
     private void Start() {
-        PlayMusic("Theme");
+        currScene = SceneManager.GetActiveScene();
+        Debug.Log(currScene.name);
+
+        if(currScene.name == "TitleScene") {
+            PlayMusic("TitleTheme");
+        }
+
+        if(currScene.name == "GameScene") {
+            PlayMusic("InGameTheme");
+        }
+        
     }
 
 

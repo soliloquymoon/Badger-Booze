@@ -23,6 +23,7 @@ public class Customer : MonoBehaviour
     private Text customerMoodText;
     private int moodScore;
     private float moodTimer = 0f;
+    private bool hasTalkedFirst = false;      // Flag for SFX Dialogue cue
 
     // Order Management
     private OrderManager orderManager;
@@ -120,6 +121,18 @@ public class Customer : MonoBehaviour
             dialogueBox.SetActive(true);
             customerMood.SetActive(true);
 
+            //play dialogue and set flag
+            if (!hasTalkedFirst) {
+                if(dialogueText.text.Length < 40) {
+                    AudioManager.Instance.PlaySFX("ShortDialogue");
+                } else {
+                    AudioManager.Instance.PlaySFX("LongDialogue");
+                }
+
+                hasTalkedFirst = true;
+            }
+            
+
             // Decrease mood every 5 seconds by 1%
             moodTimer += Time.deltaTime;
             if (moodTimer >= 5f) {
@@ -155,6 +168,7 @@ public class Customer : MonoBehaviour
         // Reset dialogue and mood
         SetDialogueText(currentOrder.getCustomerOrder());
         SetCustomerMoodText(moodScore + "%");
+        hasTalkedFirst = false;
 
         // Reset drink and receipt
         mixingDrink.Reset();
@@ -162,6 +176,7 @@ public class Customer : MonoBehaviour
     }
 
     public void EnterIngredientScene() {
+        AudioManager.Instance.PlaySFX("ButtonClick");
         bartendingScene.SetActive(true);
         customerScene.SetActive(false);
     }
@@ -172,10 +187,17 @@ public class Customer : MonoBehaviour
     }
 
     public void RevealOrder() {
+        AudioManager.Instance.PlaySFX("ButtonClick");
         SetDialogueText("I mean " + currentOrder.getDrinkName() + "!");
         int newMood = Mathf.Max(0, moodScore - 20);
         moodScore = newMood;
         SetCustomerMoodText(newMood + "%");
+        //play dialogue TODO
+            if(dialogueText.text.Length < 40) {
+                AudioManager.Instance.PlaySFX("ShortDialogue");
+            } else {
+                AudioManager.Instance.PlaySFX("LongDialogue");
+            }
         askButton.SetActive(false);
     }
 

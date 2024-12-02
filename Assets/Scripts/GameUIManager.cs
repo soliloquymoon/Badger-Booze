@@ -16,11 +16,7 @@ public class GameUIManager : MonoBehaviour
     private float fadeSpeed = 0.25f;
 
     private bool recipeIsOn = false;
-
-    public AudioSource source;
-    public AudioClip bookWindowSound;
-    public AudioClip ingredientWindowSound;
-    public AudioClip buttonPressSound;
+    private bool ingredientsIsOn = false;
     
     private void Start() {
     //Grab the only CanvasGroup in the scene    
@@ -54,15 +50,22 @@ public class GameUIManager : MonoBehaviour
             } else {
                 //StartCoroutine(TurnOnRecipeBook(0.35f));
                 settingsPanel.SetActive(true);
-                dimFadeGroup.alpha = 0.85F;
+                dimFadeGroup.alpha = 0.8F;
+                AudioManager.Instance.PlaySFX("ButtonClick");
             }
             
         } else {
             //StartCoroutine(TurnOffRecipeBook(0.35f));
             settingsPanel.SetActive(false);
             dimFadeGroup.alpha = 0;
-
+            AudioManager.Instance.PlaySFX("ButtonClick");
         }
+    }
+
+    public void OnExitSettingsClick() {
+        Debug.Log("Settings exit button clicked, settings window closed.");
+        settingsPanel.SetActive(false);
+        dimFadeGroup.alpha = 0;
     }
 
     public void OnRecipeClick() {
@@ -86,21 +89,24 @@ public class GameUIManager : MonoBehaviour
         Debug.Log("Recipe Book Opened");
 
         //play audio clip sfx
-        source.PlayOneShot(bookWindowSound);
+        //source.PlayOneShot(bookWindowSound);
+        AudioManager.Instance.PlaySFX("BookOpen");
 
 
         //wait
         yield return new WaitForSeconds(duration);
 
         recipeBookPanel.SetActive(true);
-        dimFadeGroup.alpha = 0.85F;
+        dimFadeGroup.alpha = 0.8F;
     }
 
     IEnumerator TurnOffRecipeBook(float duration) {
         Debug.Log("Recipe Book Closed");
 
         //play audio clip sfx
-        source.PlayOneShot(bookWindowSound);
+        //source.PlayOneShot(bookWindowSound);
+        AudioManager.Instance.PlaySFX("BookOpen");
+
 
         //wait
         yield return new WaitForSeconds(duration);
@@ -117,15 +123,48 @@ public class GameUIManager : MonoBehaviour
                 //TODO Implement a warning message UI for this condition
             } else {
                 //StartCoroutine(TurnOnRecipeBook(0.35f));
-                ingredientListPanel.SetActive(true);
-                dimFadeGroup.alpha = 0.85F;
+                ingredientsIsOn = true;
+                if (ingredientsIsOn) {
+                    StartCoroutine(TurnOnIngredients(0.45f));
+                }
             }
             
         } else {
             //StartCoroutine(TurnOffRecipeBook(0.35f));
-            ingredientListPanel.SetActive(false);
-            dimFadeGroup.alpha = 0;
-
+            ingredientsIsOn = false;
+            if (!ingredientsIsOn) {
+                StartCoroutine(TurnOffIngredients(0.45f));
+            }
         }
+    }
+
+    IEnumerator TurnOnIngredients(float duration) {
+        Debug.Log("Ingredients Opened");
+
+        //play audio clip sfx
+        //source.PlayOneShot(bookWindowSound);
+        AudioManager.Instance.PlaySFX("IngredientsOpen");
+
+
+        //wait
+        yield return new WaitForSeconds(duration);
+
+        ingredientListPanel.SetActive(true);
+        dimFadeGroup.alpha = 0.8F;
+    }
+
+    IEnumerator TurnOffIngredients(float duration) {
+        Debug.Log("Ingredients Closed");
+
+        //play audio clip sfx
+        //source.PlayOneShot(bookWindowSound);
+        AudioManager.Instance.PlaySFX("IngredientsOpen");
+
+
+        //wait
+        yield return new WaitForSeconds(duration);
+
+        ingredientListPanel.SetActive(false);
+        dimFadeGroup.alpha = 0;
     }
 }
