@@ -12,6 +12,7 @@ TagManager:
   - Ingredients
   - GameState
   - Receipt
+  - DrinksManager
   layers:
   - Default
   - TransparentFX

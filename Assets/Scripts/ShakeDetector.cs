@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement; 
@@ -23,9 +24,17 @@ public class ShakeDetector : MonoBehaviour
 
     public GameObject bartendingScene;
     public GameObject customerScene;
+    private Customer customer;
+    private DrinkManager drinksManager;
+    private Sprite[] drinkSprites;
 
     void Start()
     {
+        // Initialize customer and drinks manager
+        customer = GameObject.FindGameObjectWithTag("Customer").GetComponent<Customer>();
+        drinksManager = GameObject.FindGameObjectWithTag("DrinksManager").GetComponent<DrinkManager>();
+        drinkSprites = Resources.LoadAll<Sprite>("Drinks");
+
         // Assign animator
         shakerAnimator = GetComponent<Animator>();
         if (shakerAnimator == null)
@@ -108,7 +117,6 @@ public class ShakeDetector : MonoBehaviour
 
     public void ServeDrink()
     {
-        Debug.Log("Serve Button Clicked! Proceeding back to the bar scene");
         // Load the next scene
         
         if (bartendingScene != null)
@@ -135,11 +143,12 @@ public class ShakeDetector : MonoBehaviour
                 rectTransform.anchorMin = new Vector2(0.5f, 0); // Anchor to the bottom middle
                 rectTransform.anchorMax = new Vector2(0.5f, 0);
                 rectTransform.pivot = new Vector2(0.5f, 0);    // Set pivot to the bottom center
-                rectTransform.anchoredPosition = new Vector2(-15, 535);
+                rectTransform.anchoredPosition = Vector2.zero;
+                // Add 10% of Cocktail glass height to the Y value
+                rectTransform.anchoredPosition += new Vector2(0, rectTransform.rect.height * 0.1f); 
             }
             // Scale the image down
             cocktailImage.transform.localScale = new Vector3(0.5f, 0.5f, 1f); // Scale down to 50%
-            Debug.Log("Cocktail Image repositioned and resized.");
         }
         else
         {
@@ -159,7 +168,6 @@ public class ShakeDetector : MonoBehaviour
 
         if (currentShakes >= shakesToComplete)
         {
-            Debug.Log("Shaking completed!");
             EndShakingScene();
         }
     }
@@ -176,7 +184,6 @@ public class ShakeDetector : MonoBehaviour
 
         if (currentTilts >= tiltsToComplete)
         {
-            Debug.Log("Tilting completed!");
             ShowCocktailFinalState();
         }
     }
@@ -186,19 +193,43 @@ public class ShakeDetector : MonoBehaviour
         if (progressBar != null)
         {
             progressBar.value = currentValue;
-            Debug.Log($"Progress updated: {currentValue}/{totalValue}");
         }
     }
 
     private void EndShakingScene()
 {
-    Debug.Log("Shaking scene completed!");
 
     // Display the cocktail image
     if (cocktailImage != null)
     {
+        Drink mixingDrink = customer.GetMixingDrink();
+        List<Drink> allDrinks = drinksManager.getDrinkList();
+
+        // Find the closest score over 30 to get the closest drink to the mixing drink
+        int maxScore = 0;
+        Drink closestDrink = null;
+        foreach (Drink drink in allDrinks) {
+            int score = drinksManager.calculateScore(mixingDrink, drink);
+            if(score >= 30) {
+               maxScore = Mathf.Max(maxScore, score); 
+               closestDrink = drink;
+            }
+        }
+
+        // If it didn't match anything by over 30 score, assign a default sprite
+        if(closestDrink == null) {
+            cocktailImage.GetComponent<Image>().sprite = drinkSprites[3]; // Use Margarita sprite by default
+        } else {
+            // Find the sprite of the closest drink to assign
+            string formattedName = closestDrink.getName().Replace(" ", "_");
+            foreach (Sprite drinkSprite in drinkSprites) {
+                if(drinkSprite.name.Equals(formattedName)) {
+                    cocktailImage.GetComponent<Image>().sprite = drinkSprite;
+                }
+            }
+        }
+
         cocktailImage.SetActive(true);
-        Debug.Log("Cocktail Image displayed!");
     }
     else
     {
@@ -209,7 +240,6 @@ public class ShakeDetector : MonoBehaviour
     if (tiltProgressBar != null)
     {
         tiltProgressBar.gameObject.SetActive(true); // Explicitly activate the progress bar
-        Debug.Log("Tilt Progress Bar activated!");
     }
     else
     {
@@ -220,13 +250,11 @@ public class ShakeDetector : MonoBehaviour
 
     private void ShowCocktailFinalState()
     {
-        Debug.Log("Cocktail completed!");
 
         // Display the Serve Button
         if (serveButton != null)
         {
             serveButton.SetActive(true);
-            Debug.Log("Serve Button displayed!");
         }
         else
         {
