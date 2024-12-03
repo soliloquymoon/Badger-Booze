@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement; 
 
 public class ShakeDetector : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class ShakeDetector : MonoBehaviour
     private int currentTilts = 0; // Current tilts detected
 
     public GameObject cocktailImage; // Reference to the cocktail image UI (parent of tiltProgressBar)
+
+    public GameObject serveButton;
 
     void Start()
     {
@@ -53,6 +56,16 @@ public class ShakeDetector : MonoBehaviour
         {
             cocktailImage.SetActive(false);
         }
+
+        // Ensure the Serve Button is hidden initially
+        if (serveButton != null)
+        {
+            serveButton.SetActive(false);
+        }
+        else
+        {
+            Debug.LogError("Serve Button reference is missing!");
+        }
     }
 
     void Update()
@@ -88,6 +101,13 @@ public class ShakeDetector : MonoBehaviour
             lastActionTime = Time.time;
         }
         #endif
+    }
+
+    public void ServeDrink()
+    {
+        Debug.Log("Serve Button Clicked! Proceeding back to the bar scene");
+        // Load the next scene
+        SceneManager.LoadScene("CustomerScene");
     }
 
     private void DetectShake()
@@ -163,6 +183,17 @@ public class ShakeDetector : MonoBehaviour
 
     private void ShowCocktailFinalState()
     {
-        Debug.Log("Cocktail completed! Add further logic for success state here.");
+        Debug.Log("Cocktail completed!");
+
+        // Display the Serve Button
+        if (serveButton != null)
+        {
+            serveButton.SetActive(true);
+            Debug.Log("Serve Button displayed!");
+        }
+        else
+        {
+            Debug.LogError("Serve Button reference is missing!");
+        }
     }
 }
