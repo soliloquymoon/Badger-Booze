@@ -121,6 +121,30 @@ public class ShakeDetector : MonoBehaviour
             customerScene.SetActive(true);
             serveButton.SetActive(false);
         }
+
+        if (cocktailImage != null)
+        {
+            cocktailImage.SetActive(true);
+            tiltProgressBar.gameObject.SetActive(false);
+
+
+            // Set its position to the bottom middle of the screen
+            RectTransform rectTransform = cocktailImage.GetComponent<RectTransform>();
+            if (rectTransform != null)
+            {
+                rectTransform.anchorMin = new Vector2(0.5f, 0); // Anchor to the bottom middle
+                rectTransform.anchorMax = new Vector2(0.5f, 0);
+                rectTransform.pivot = new Vector2(0.5f, 0);    // Set pivot to the bottom center
+                rectTransform.anchoredPosition = new Vector2(-15, 535);
+            }
+            // Scale the image down
+            cocktailImage.transform.localScale = new Vector3(0.5f, 0.5f, 1f); // Scale down to 50%
+            Debug.Log("Cocktail Image repositioned and resized.");
+        }
+        else
+        {
+            Debug.LogError("Cocktail Image reference is missing!");
+        }
     }
 
     private void DetectShake()
