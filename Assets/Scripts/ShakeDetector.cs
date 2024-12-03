@@ -21,6 +21,9 @@ public class ShakeDetector : MonoBehaviour
 
     public GameObject serveButton;
 
+    public GameObject bartendingScene;
+    public GameObject customerScene;
+
     void Start()
     {
         // Assign animator
@@ -107,7 +110,17 @@ public class ShakeDetector : MonoBehaviour
     {
         Debug.Log("Serve Button Clicked! Proceeding back to the bar scene");
         // Load the next scene
-        SceneManager.LoadScene("CustomerScene");
+        
+        if (bartendingScene != null)
+        {
+            bartendingScene.SetActive(false);
+        }
+
+        if (customerScene != null)
+        {
+            customerScene.SetActive(true);
+            serveButton.SetActive(false);
+        }
     }
 
     private void DetectShake()
