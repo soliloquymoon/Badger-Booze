@@ -43,7 +43,6 @@ public class Drink {
         } else {
             ingredients.Add(ingredientName, 0.0001f);
         }
-        Debug.Log(ingredientName + " is " + ingredients[ingredientName]);
     }
 
     /*

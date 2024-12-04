@@ -54,7 +54,6 @@ public class MenuScene : MonoBehaviour
         fadeGroup.alpha = 1 - Time.timeSinceLevelLoad * fadeInSpeed;
         
         if (isStartingGame == true) {
-            Debug.Log("isStartingGame == true");
             fadeGroup.alpha += (Time.time - startClickTimeStamp) * fadeOutSpeed;
 
             if (fadeGroup.alpha >= 1) {
@@ -65,7 +64,6 @@ public class MenuScene : MonoBehaviour
 
     //Buttons
     public void OnStartClick() {
-        Debug.Log("Start Button clicked. Game start.");
         AudioManager.Instance.PlaySFX("ButtonClick");
         isStartingGame = true;
         startClickTimeStamp = Time.time;
@@ -73,7 +71,6 @@ public class MenuScene : MonoBehaviour
     }
 
     public void OnSettingsClick() {
-        Debug.Log("Settings Button clicked. Enter Settings Window.");
         if(settingsPanel.activeSelf == false) {
             if(recipeBookPanel.activeSelf == true || ingredientListPanel.activeSelf == true || recipeIsOn == true) {
                 Debug.Log("Other windows have to be closed first before opening Settings window.");
@@ -94,14 +91,12 @@ public class MenuScene : MonoBehaviour
     }
 
     public void OnExitSettingsClick() {
-        Debug.Log("Settings exit button clicked, settings window closed.");
         AudioManager.Instance.PlaySFX("ButtonClick");
         settingsPanel.SetActive(false);
         dimFadeGroup.alpha = 0;
     }
 
     public void OnRecipeClick() {
-        Debug.Log("Recipe Book Button clicked. Enter Recipe Window.");
         if(recipeBookPanel.activeSelf == false) {
             if(ingredientListPanel.activeSelf == true || settingsPanel.activeSelf == true) {
                 Debug.Log("Other windows have to be closed first before opening Recipe window.");
@@ -118,7 +113,6 @@ public class MenuScene : MonoBehaviour
     }
 
     IEnumerator TurnOnRecipeBook(float duration) {
-        Debug.Log("Recipe Book Opened");
 
         //play audio clip sfx
         //source.PlayOneShot(bookWindowSound);
@@ -133,8 +127,6 @@ public class MenuScene : MonoBehaviour
     }
 
     IEnumerator TurnOffRecipeBook(float duration) {
-        Debug.Log("Recipe Book Closed");
-
         //play audio clip sfx
         AudioManager.Instance.PlaySFX("BookOpen");
 
@@ -147,7 +139,6 @@ public class MenuScene : MonoBehaviour
     }
 
     public void OnIngredientsClick() {
-        Debug.Log("Ingredients Button clicked. Enter Ingredients Window.");
         if(ingredientListPanel.activeSelf == false) {
             if(recipeBookPanel.activeSelf == true || settingsPanel.activeSelf == true || recipeIsOn == true) {
                 Debug.Log("Other windows have to be closed first before opening Ingredients window.");
@@ -170,7 +161,6 @@ public class MenuScene : MonoBehaviour
     }
 
     IEnumerator TurnOnIngredients(float duration) {
-        Debug.Log("Ingredients Opened");
 
         //play audio clip sfx
         //source.PlayOneShot(bookWindowSound);
@@ -185,7 +175,6 @@ public class MenuScene : MonoBehaviour
     }
 
     IEnumerator TurnOffIngredients(float duration) {
-        Debug.Log("Ingredients Closed");
 
         //play audio clip sfx
         //source.PlayOneShot(bookWindowSound);

@@ -56,7 +56,6 @@ public class ShakerLid : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
     {
         this.rectTransform.anchoredPosition = originalPosition;
         if (finishMixing) {
-            Debug.Log("Shaker Closed!");
             closedShaker.SetActive(true);
             openShaker.SetActive(false);
             ingredients.SetActive(false);

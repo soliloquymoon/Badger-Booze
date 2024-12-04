@@ -239,8 +239,4 @@ public class Customer : MonoBehaviour
     public void EnableDialogueButtons() {
         dialogueBtns.SetActive(true);
     }
-
-    public void freeze() {
-
-    }
 }
