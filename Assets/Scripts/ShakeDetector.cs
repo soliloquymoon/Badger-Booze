@@ -24,16 +24,21 @@ public class ShakeDetector : MonoBehaviour
 
     public GameObject bartendingScene;
     public GameObject customerScene;
+    public ShakerLid shakerLid;
     private Customer customer;
+    private GameState gameState;
     private DrinkManager drinksManager;
+    public GameObject openShaker;
     private Sprite[] drinkSprites;
 
     void Start()
     {
-        // Initialize customer and drinks manager
+        // Initialize customer, drinks, and game state
         customer = GameObject.FindGameObjectWithTag("Customer").GetComponent<Customer>();
+        customerScene = GameObject.FindGameObjectWithTag("CustomerScene");
         drinksManager = GameObject.FindGameObjectWithTag("DrinksManager").GetComponent<DrinkManager>();
         drinkSprites = Resources.LoadAll<Sprite>("Drinks");
+        gameState = GameObject.FindGameObjectWithTag("GameState").GetComponent<GameState>();
 
         // Assign animator
         shakerAnimator = GetComponent<Animator>();
@@ -118,15 +123,13 @@ public class ShakeDetector : MonoBehaviour
     public void ServeDrink()
     {
         // Load the next scene
-        
         if (bartendingScene != null)
         {
-            bartendingScene.SetActive(false);
+            bartendingScene.transform.SetSiblingIndex(0);
         }
 
         if (customerScene != null)
         {
-            customerScene.SetActive(true);
             serveButton.SetActive(false);
         }
 
@@ -149,11 +152,22 @@ public class ShakeDetector : MonoBehaviour
             }
             // Scale the image down
             cocktailImage.transform.localScale = new Vector3(0.5f, 0.5f, 1f); // Scale down to 50%
+
+            // Trigger drink served logic
+            cocktailImage.transform.SetParent(customerScene.transform);
+            gameState.DrinkServed();
+            openShaker.SetActive(true);
+            shakerLid.Reset();
         }
         else
         {
             Debug.LogError("Cocktail Image reference is missing!");
         }
+    }
+
+    public void ResetBartendingScene() {
+        openShaker.SetActive(true);
+        shakerLid.Reset();
     }
 
     private void DetectShake()

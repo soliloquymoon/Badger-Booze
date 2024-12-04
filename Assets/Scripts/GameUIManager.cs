@@ -13,6 +13,7 @@ public class GameUIManager : MonoBehaviour
     public GameObject recipeBookPanel;
     public GameObject settingsPanel;
     public GameObject ingredientListPanel;
+    private GameState gameState;
     private float fadeSpeed = 0.25f;
 
     private bool recipeIsOn = false;
@@ -25,6 +26,9 @@ public class GameUIManager : MonoBehaviour
 
     //
     dimFadeGroup = GameObject.Find("Dim").GetComponent<CanvasGroup>();
+
+    // Get Game State
+    gameState = GameObject.Find("GameState").GetComponent<GameState>();
 
     //Start with a black screen
     fadeGroup.alpha = 1;  
@@ -52,6 +56,7 @@ public class GameUIManager : MonoBehaviour
                 settingsPanel.SetActive(true);
                 dimFadeGroup.alpha = 0.8F;
                 AudioManager.Instance.PlaySFX("ButtonClick");
+                gameState.StopTimer(); // Pause game
             }
             
         } else {
@@ -59,6 +64,7 @@ public class GameUIManager : MonoBehaviour
             settingsPanel.SetActive(false);
             dimFadeGroup.alpha = 0;
             AudioManager.Instance.PlaySFX("ButtonClick");
+            gameState.StartTimer(); // Continue game
         }
     }
 
@@ -66,6 +72,7 @@ public class GameUIManager : MonoBehaviour
         Debug.Log("Settings exit button clicked, settings window closed.");
         settingsPanel.SetActive(false);
         dimFadeGroup.alpha = 0;
+        gameState.StartTimer(); // Continue game
     }
 
     public void OnRecipeClick() {

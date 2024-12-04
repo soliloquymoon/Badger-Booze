@@ -9,19 +9,23 @@ public class ShakerLid : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
     private RectTransform rectTransform;
     private Vector3 originalPosition;
     private bool finishMixing;
-    private GameObject closedShaker;
-    private GameObject openShaker;
-    private GameObject ingredients;
+    public GameObject closedShaker;
+    public GameObject openShaker;
+    public GameObject ingredients;
 
     void Start()
     {
         // Initialize references to RectTransform, parent Canvas, and the finishMixing flag
         rectTransform = this.GetComponent<RectTransform>();
         finishMixing = false;
-        openShaker = GameObject.FindGameObjectWithTag("Open Shaker");
-        closedShaker = GameObject.FindGameObjectWithTag("Closed Shaker");
         closedShaker.SetActive(false);
-        ingredients = GameObject.FindGameObjectWithTag("Ingredients");
+    }
+
+    public void Reset() {
+        // Reset references to RectTransform, parent Canvas, and the finishMixing flag
+        rectTransform = this.GetComponent<RectTransform>();
+        finishMixing = false;
+        closedShaker.SetActive(false);
     }
 
     /*

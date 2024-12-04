@@ -17,6 +17,7 @@ public class Customer : MonoBehaviour
 
     // Dialogue and Mood
     private GameObject dialogueBox;          // Reference to the dialogue box GameObject
+    private GameObject dialogueBtns;          // Reference to the dialogue buttons GameObject
     private Text dialogueText;
     private GameObject askButton;
     private GameObject customerMood;         // Reference to the customer mood GameObject
@@ -37,6 +38,7 @@ public class Customer : MonoBehaviour
     private GameObject customerScene;
     private GameObject bartendingScene;
     private GameState gameState;
+    private DrinkManager drinkManager; 
 
     // Drink being mixed for the customer
     private Drink mixingDrink;
@@ -47,6 +49,7 @@ public class Customer : MonoBehaviour
     {
         // Get Game State
         gameState = GameObject.Find("GameState").GetComponent<GameState>();
+        drinkManager = GameObject.FindGameObjectWithTag("DrinksManager").GetComponent<DrinkManager>();
 
         // Customer starts walking at the end of the screen
         transform.position = new Vector3(Screen.width, Screen.height / 2f, transform.position.z);
@@ -67,6 +70,7 @@ public class Customer : MonoBehaviour
         askButton = GameObject.Find("AskButton");
         dialogueBox = GameObject.Find("Dialogue");
         dialogueText = GameObject.Find("DialogueText").GetComponent<Text>();
+        dialogueBtns = GameObject.Find("DialogueBtn");
 
         customerMood = GameObject.Find("CustomerMood");
         customerMoodText = GameObject.Find("CustomerMoodText").GetComponent<Text>();
@@ -172,18 +176,21 @@ public class Customer : MonoBehaviour
 
         // Reset drink and receipt
         mixingDrink.Reset();
+        // Find receipt again since it might've been destroyed to reset bar scene
+        receipt = GameObject.FindGameObjectWithTag("Receipt").GetComponent<Receipt>();
         receipt.Reset();
     }
 
     public void EnterIngredientScene() {
         AudioManager.Instance.PlaySFX("ButtonClick");
-        bartendingScene.SetActive(true);
-        customerScene.SetActive(false);
+        // Reset bartending scene objects for new customer
+        bartendingScene = GameObject.Find("BartendingScene");
+        receipt = GameObject.FindGameObjectWithTag("Receipt").GetComponent<Receipt>();
+        bartendingScene.transform.SetSiblingIndex(1);
     }
 
     public void EnterCustomerScene() {
-        customerScene.SetActive(true);
-        bartendingScene.SetActive(false);
+        customerScene.transform.SetSiblingIndex(1);
     }
 
     public void RevealOrder() {
@@ -213,7 +220,27 @@ public class Customer : MonoBehaviour
         return this.mixingDrink;
     }
 
+    public Drink GetOrderedDrink() {
+        return drinkManager.getDrink(currentOrder.getDrinkName());
+    }
+
+    public int GetMoodScore() {
+        return moodScore;
+    }
+
     public Receipt GetReceipt() {
         return this.receipt;
+    }
+
+    public void DisableDialogueButtons() {
+        dialogueBtns.SetActive(false);
+    }
+
+    public void EnableDialogueButtons() {
+        dialogueBtns.SetActive(true);
+    }
+
+    public void freeze() {
+
     }
 }

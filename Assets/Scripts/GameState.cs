@@ -16,7 +16,8 @@ public class GameState : MonoBehaviour
     private Text newDayText { get; set; }
 
     // Time and Money management (Persistent)
-    private bool countTime = true;
+    public bool countTime = true;
+    public float gameSpeed = 3.0f;
     private string timeOfDay { get; set; }
     private float currentTime { get; set; } 
     private int currentDay { get; set; }
@@ -32,10 +33,54 @@ public class GameState : MonoBehaviour
     private float dailyNetIncome { get; set; }
     private int dailyCustomersServed { get; set; }
     private bool gameOver { get; set; }
-    private GameObject currentCustomer;
+    private GameObject customerObject;
     private GameObject summaryObject;
+    private Customer customer;
+    private DrinkManager drinkManager;
+    private ReactionManager reactionManager;
+    // Scene Management
+    private GameObject bartendingScene;
 
-    // Gets called by DrinksManager every time a drink score is calculated
+    public void DrinkServed() {
+        Drink userDrink = customer.GetMixingDrink();
+        Drink customerOrder = customer.GetOrderedDrink();
+        int score = drinkManager.calculateScore(userDrink, customerOrder);
+        // A drink score of 80 earns $8, a score of 70 earns $7 and so on...
+        float money = (float) score / 10f;
+        // Mood score determines the percentage of tip you receive
+        // Example: 80% mood and a score of 85 means you get 8.5 * 80/100 = $15.3
+        float tip = money * (customer.GetMoodScore() / 100);
+
+        // Update scores
+        dailyTotalScore += score;
+        totalScore += score;
+
+        // Update money
+        AddMoney(money + tip);
+        dailyTips += tip;
+
+        // Increment customers served
+        dailyCustomersServed++;
+
+        // Display customer reaction
+        string orderReaction = reactionManager.GetReaction(score);
+        customer.DisableDialogueButtons();
+        customer.SetDialogueText(orderReaction);
+        StartCoroutine(waitForReaction());
+    }
+
+    IEnumerator waitForReaction() {
+        yield return new WaitForSeconds(3);
+        GameObject.Find("Cocktail").transform.SetParent(bartendingScene.transform);
+        customer.NewCustomer();
+        customer.EnableDialogueButtons();
+        // Reset Bartending Scene
+        Destroy(bartendingScene);
+        bartendingScene = Instantiate(Resources.Load<GameObject>("BartendingScene"), GameObject.Find("Canvas").transform); 
+        bartendingScene.transform.SetSiblingIndex(0);
+        bartendingScene.name = "BartendingScene"; // Gets rid of the "(Clone)" label
+    }
+
     public void AddMoney(float amount) {
         if(barMoney + amount <= 999999f) {
             barMoney += amount;
@@ -66,8 +111,8 @@ public class GameState : MonoBehaviour
     }
 
     public void NewDay() {
-        currentCustomer.GetComponent<Customer>().NewCustomer();
-        currentCustomer.SetActive(true);
+        customer.NewCustomer();
+        customerObject.transform.SetSiblingIndex(2); // Put customer in-front of bar again to display it
         currentTime = 1080.0f;
         timeOfDay = "PM";
         dailyCosts = 0f;
@@ -80,7 +125,7 @@ public class GameState : MonoBehaviour
         if(gameOver) {
             currentDay = 1;   // Reset game day to 1
             totalScore = 0f;  // Reset total score
-            barMoney = 500.0f; // Reset bar money
+            barMoney = 100.0f; // Reset bar money
             moneyUI.text = "$" + barMoney.ToString("N2").TrimStart('0').TrimStart(',');
             newDayText.text = "Start New Day";         // Reset from 'Restart Game' if needed
         } else {
@@ -105,7 +150,7 @@ public class GameState : MonoBehaviour
         currentTime = 1080.0f; // Starts at 6PM, equivalent to 1080 minutes
         endTime = 1560.0f;  // Ends at 2AM, equivalent to 1560 minutes
         timeOfDay = "PM";
-        barMoney = PlayerPrefs.GetFloat("barMoney", 500f);
+        barMoney = PlayerPrefs.GetFloat("barMoney", 100f);
         currentDay = PlayerPrefs.GetInt("currentDay", 1);
         totalScore = PlayerPrefs.GetFloat("totalScore", 0f);
         dailyCosts = 0f;
@@ -126,11 +171,17 @@ public class GameState : MonoBehaviour
         dayUI = GameObject.Find("Day").GetComponent<Text>();
         summaryObject = GameObject.Find("Summary");
 
+        // Get Initial Bartending Scene
+        bartendingScene = GameObject.Find("BartendingScene");
+
         // Disable summaryObject initially
         summaryObject.SetActive(false);
 
-        // Get Customer
-        currentCustomer = GameObject.Find("Customer");
+        // Get Customer and Drink Manager
+        customerObject = GameObject.Find("Customer");
+        customer = customerObject.GetComponent<Customer>();
+        reactionManager = GameObject.Find("ReactionManager").GetComponent<ReactionManager>();
+        drinkManager = GameObject.Find("DrinksManager").GetComponent<DrinkManager>();
 
         // Rebuild all UI Layout on Start to Prevent UI glitches
         LayoutRebuilder.ForceRebuildLayoutImmediate(GameObject.Find("TopLeft").GetComponent<RectTransform>());
@@ -140,7 +191,8 @@ public class GameState : MonoBehaviour
     {
         if(currentTime >= endTime) {
             countTime = false;
-            currentCustomer.SetActive(false);
+            // Hide customer by re-ordering it behind the bar
+            customerObject.transform.SetSiblingIndex(0);
             // Display end of day summary
             if(barMoney >= 0) {
                 dayUI.text = $"Day {currentDay}";
@@ -148,12 +200,13 @@ public class GameState : MonoBehaviour
                 if(dailyNetIncome == 0) {
                     netIncomeSign = "";
                 }
+                dailyNetIncome = Mathf.Abs(dailyNetIncome); // Sign is already determined, only show value now
                 summaryContentUI.text = "Total Customers:\n" +
-                                        "-------------------------------------\n" +
+                                        "------------------------------------\n" +
                                         "Total Revenue:\n" +
                                         "Cost of Ingredients:\n" +
                                         "Total Tips:\n" +
-                                        "-------------------------------------\n" +
+                                        "------------------------------------\n" +
                                         "Net Income:\n" + 
                                         "Average Score:\n" +
                                         "Total Score:\n";
@@ -165,6 +218,12 @@ public class GameState : MonoBehaviour
                                     $"{getAverageScore()}/100\n" +
                                     $"{totalScore:0.00}\n";
                 summaryObject.SetActive(true);
+                // Reset Bartending Scene
+                Destroy(bartendingScene);
+                bartendingScene = Instantiate(Resources.Load<GameObject>("BartendingScene"), GameObject.Find("Canvas").transform); 
+                bartendingScene.transform.SetSiblingIndex(0);
+                bartendingScene.name = "BartendingScene"; // Gets rid of the "(Clone)" label
+                GameObject.Find("Closed Shaker").GetComponent<ShakeDetector>().ResetBartendingScene();
             } 
             // Game lost if money is negative
             else {
@@ -179,7 +238,7 @@ public class GameState : MonoBehaviour
 
         }
         if(countTime) {
-            currentTime += Time.deltaTime * 1.5f;      // 1 minute in game time is equivalent to 2/3 seconds in real time.
+            currentTime += Time.deltaTime * gameSpeed;      // Scale game time
             clockUI.text = getTimeString();
         }
     }

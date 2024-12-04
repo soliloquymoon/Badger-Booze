@@ -119,7 +119,7 @@ public class Ingredient : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
             // Pour drink multiple times to make it seem faster
             for(int i = 0; i < 8; i++) {
                 drink.AddIngredient(this.name);
-                gameState.DeductMoney(0.0001f);
+                gameState.DeductMoney(0.0002f);
             }
             customer.GetReceipt().SetText(drink, this.name);
         }
