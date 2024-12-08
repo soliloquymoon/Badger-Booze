@@ -17,10 +17,6 @@ public class Ingredient : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
     private Coroutine pouring;
     private GameState gameState;
 
-    public Ingredient(string name)
-    {
-        this.name = name;
-    }
     void Start()
     {
         // Initialize references for RectTransform, parent, canvas, animator, and image
@@ -29,7 +25,6 @@ public class Ingredient : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
         canvas = this.GetComponentInParent<Canvas>();
         animator = this.GetComponent<Animator>();
         image = this.GetComponent<Image>();
-        image.SetNativeSize();
 
         // Find customer, GameState, and receipt objects
         customer = GameObject.FindGameObjectWithTag("Customer").GetComponent<Customer>();
@@ -123,5 +118,16 @@ public class Ingredient : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
             }
             customer.GetReceipt().SetText(drink, this.name);
         }
+    }
+
+    public void SetName(string name) {
+        this.name = name;
+    }
+
+    public void SetSprite(Sprite sprite) {
+        image = this.GetComponent<Image>();
+
+        this.image.sprite = sprite;
+        this.image.SetNativeSize();
     }
 }

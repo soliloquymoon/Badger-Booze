@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 
@@ -8,7 +9,7 @@ public class DrinkManager : MonoBehaviour {
     /*
      * Static list of all possible orders in the game
      */
-    private List<Drink> drinkList = new List<Drink>
+    private static List<Drink> drinkList = new List<Drink>
     {
         new Drink("Margarita", new Dictionary<string, float> 
         { 
@@ -61,6 +62,32 @@ public class DrinkManager : MonoBehaviour {
         })
     };
 
+    private List<Drink> unlockedDrinks = new List<Drink>{drinkList[0]};
+    private int nextDrinkIndex;
+    private IngredientManager ingredientManager;
+
+    void Start()
+    {
+        nextDrinkIndex = 1;
+        ingredientManager = GameObject.Find("IngredientManager").GetComponent<IngredientManager>();
+    }
+
+    private float timer = 0f;
+    private float interval = 10f;
+
+    void Update()
+    {
+        timer += Time.deltaTime;
+
+        if (timer >= interval)
+        {
+            Debug.Log("new drink added");
+            UnlockNewDrink();
+            timer = 0f;
+        }
+    }
+
+
     public List<Drink> getDrinkList() {
         return drinkList;
     }
@@ -72,6 +99,24 @@ public class DrinkManager : MonoBehaviour {
             }
         }
         return null;
+    }
+
+    public List<string> GetUnlockedDrinkNames()
+    {
+        List<string> drinkNames = new List<string>();
+        Debug.Log(this.unlockedDrinks == null);
+        foreach (Drink drink in this.unlockedDrinks)
+            drinkNames.Add(drink.getName());
+        return drinkNames;
+    }
+
+    public void UnlockNewDrink()
+    {
+        unlockedDrinks.Add(drinkList[nextDrinkIndex]);
+        ingredientManager.UnlockNewIngredients(drinkList[nextDrinkIndex]);
+
+        Debug.Log(this.GetUnlockedDrinkNames());
+        nextDrinkIndex++;
     }
 
     /*
