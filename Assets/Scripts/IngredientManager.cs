@@ -34,6 +34,11 @@ public class IngredientManager : MonoBehaviour
                 unlockedItems.Add(ingredientName);                
         }
 
+
+        // Ensure the game objects are updated on Awake()
+        this.liquorItems = GameObject.Find("LiquorItems").transform;
+        this.juiceItems = GameObject.Find("JuiceItems").transform;
+
         // Save the updated unlocked ingredients list to PlayerPrefs
         SaveUnlockedItems();
         ShowIngredientItems();
