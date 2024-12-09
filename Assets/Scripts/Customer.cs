@@ -127,10 +127,47 @@ public class Customer : MonoBehaviour
 
             //play dialogue and set flag
             if (!hasTalkedFirst) {
+                System.Random rnd = new System.Random();
+                int dialogue;
+
+                //checks whether the dialogue length is short or long to play the appropriate audio length
                 if(dialogueText.text.Length < 40) {
-                    AudioManager.Instance.PlaySFX("ShortDialogue");
+                    dialogue = rnd.Next(5);
+                    
+                    switch (dialogue) {
+                        case 0:
+                            AudioManager.Instance.PlaySFX("ShortDialogueA");
+                            break;
+                        case 1:
+                            AudioManager.Instance.PlaySFX("ShortDialogueB");
+                            break;
+                        case 2:
+                            AudioManager.Instance.PlaySFX("ShortDialogueC");
+                            break;
+                        case 3:
+                            AudioManager.Instance.PlaySFX("ShortDialogueD");
+                            break;
+                        case 4:
+                            AudioManager.Instance.PlaySFX("ShortDialogueE");
+                            break;
+                    }
                 } else {
-                    AudioManager.Instance.PlaySFX("LongDialogue");
+                    dialogue = rnd.Next(4);
+                    
+                    switch (dialogue) {
+                        case 0:
+                            AudioManager.Instance.PlaySFX("LongDialogueA");
+                            break;
+                        case 1:
+                            AudioManager.Instance.PlaySFX("LongDialogueB");
+                            break;
+                        case 2:
+                            AudioManager.Instance.PlaySFX("LongDialogueC");
+                            break;
+                        case 3:
+                            AudioManager.Instance.PlaySFX("LongDialogueD");
+                            break;
+                    }
                 }
 
                 hasTalkedFirst = true;
@@ -199,12 +236,49 @@ public class Customer : MonoBehaviour
         int newMood = Mathf.Max(0, moodScore - 20);
         moodScore = newMood;
         SetCustomerMoodText(newMood + "%");
-        //play dialogue TODO
-            if(dialogueText.text.Length < 40) {
-                AudioManager.Instance.PlaySFX("ShortDialogue");
-            } else {
-                AudioManager.Instance.PlaySFX("LongDialogue");
-            }
+        //play dialogue sfx of appropriate length
+            System.Random rnd = new System.Random();
+                int dialogue;
+
+                //checks whether the dialogue length is short or long to play the appropriate audio length
+                if(dialogueText.text.Length < 40) {
+                    dialogue = rnd.Next(5);
+                    
+                    switch (dialogue) {
+                        case 0:
+                            AudioManager.Instance.PlaySFX("ShortDialogueA");
+                            break;
+                        case 1:
+                            AudioManager.Instance.PlaySFX("ShortDialogueB");
+                            break;
+                        case 2:
+                            AudioManager.Instance.PlaySFX("ShortDialogueC");
+                            break;
+                        case 3:
+                            AudioManager.Instance.PlaySFX("ShortDialogueD");
+                            break;
+                        case 4:
+                            AudioManager.Instance.PlaySFX("ShortDialogueE");
+                            break;
+                    }
+                } else {
+                    dialogue = rnd.Next(4);
+                    
+                    switch (dialogue) {
+                        case 0:
+                            AudioManager.Instance.PlaySFX("LongDialogueA");
+                            break;
+                        case 1:
+                            AudioManager.Instance.PlaySFX("LongDialogueB");
+                            break;
+                        case 2:
+                            AudioManager.Instance.PlaySFX("LongDialogueC");
+                            break;
+                        case 3:
+                            AudioManager.Instance.PlaySFX("LongDialogueD");
+                            break;
+                    }
+                }
         askButton.SetActive(false);
     }
 

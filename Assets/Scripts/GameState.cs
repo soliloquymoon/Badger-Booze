@@ -66,6 +66,51 @@ public class GameState : MonoBehaviour
         string orderReaction = reactionManager.GetReaction(score);
         customer.DisableDialogueButtons();
         customer.SetDialogueText(orderReaction);
+        
+        //play reaction dialogue sfx of appropriate length
+        System.Random rnd = new System.Random();
+        int dialogue;
+
+        //checks whether the reaction text length is short or long to play the appropriate audio length
+        if(orderReaction.Length < 40) {
+            dialogue = rnd.Next(5);
+                    
+            switch (dialogue) {
+                case 0:
+                    AudioManager.Instance.PlaySFX("ShortDialogueA");
+                    break;
+                case 1:
+                    AudioManager.Instance.PlaySFX("ShortDialogueB");
+                    break;
+                case 2:
+                    AudioManager.Instance.PlaySFX("ShortDialogueC");
+                    break;
+                case 3:
+                    AudioManager.Instance.PlaySFX("ShortDialogueD");
+                    break;
+                case 4:
+                    AudioManager.Instance.PlaySFX("ShortDialogueE");
+                    break;
+            }
+        } else {
+            dialogue = rnd.Next(4);
+                    
+            switch (dialogue) {
+                case 0:
+                    AudioManager.Instance.PlaySFX("LongDialogueA");
+                    break;
+                case 1:
+                    AudioManager.Instance.PlaySFX("LongDialogueB");
+                    break;
+                case 2:
+                    AudioManager.Instance.PlaySFX("LongDialogueC");
+                    break;
+                case 3:
+                    AudioManager.Instance.PlaySFX("LongDialogueD");
+                    break;
+            }
+        }
+
         StartCoroutine(waitForReaction());
     }
 

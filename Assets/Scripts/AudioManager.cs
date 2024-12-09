@@ -54,6 +54,7 @@ public class AudioManager : MonoBehaviour
 
         if (s == null) {
             Debug.Log("Sound Not Found");
+            Debug.Log(name);
         } else {
             sfxSource.PlayOneShot(s.clip);
         }

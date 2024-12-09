@@ -52,7 +52,6 @@ public class GameUIManager : MonoBehaviour
                 Debug.Log("Other windows have to be closed first before opening Settings window.");
                 //TODO Implement a warning message UI for this condition
             } else {
-                //StartCoroutine(TurnOnRecipeBook(0.35f));
                 settingsPanel.SetActive(true);
                 dimFadeGroup.alpha = 0.8F;
                 AudioManager.Instance.PlaySFX("ButtonClick");
@@ -60,7 +59,6 @@ public class GameUIManager : MonoBehaviour
             }
             
         } else {
-            //StartCoroutine(TurnOffRecipeBook(0.35f));
             settingsPanel.SetActive(false);
             dimFadeGroup.alpha = 0;
             AudioManager.Instance.PlaySFX("ButtonClick");
@@ -96,7 +94,6 @@ public class GameUIManager : MonoBehaviour
         Debug.Log("Recipe Book Opened");
 
         //play audio clip sfx
-        //source.PlayOneShot(bookWindowSound);
         AudioManager.Instance.PlaySFX("BookOpen");
 
 
@@ -111,7 +108,6 @@ public class GameUIManager : MonoBehaviour
         Debug.Log("Recipe Book Closed");
 
         //play audio clip sfx
-        //source.PlayOneShot(bookWindowSound);
         AudioManager.Instance.PlaySFX("BookOpen");
 
 
@@ -129,7 +125,6 @@ public class GameUIManager : MonoBehaviour
                 Debug.Log("Other windows have to be closed first before opening Ingredients window.");
                 //TODO Implement a warning message UI for this condition
             } else {
-                //StartCoroutine(TurnOnRecipeBook(0.35f));
                 ingredientsIsOn = true;
                 if (ingredientsIsOn) {
                     StartCoroutine(TurnOnIngredients(0.45f));
@@ -137,7 +132,6 @@ public class GameUIManager : MonoBehaviour
             }
             
         } else {
-            //StartCoroutine(TurnOffRecipeBook(0.35f));
             ingredientsIsOn = false;
             if (!ingredientsIsOn) {
                 StartCoroutine(TurnOffIngredients(0.45f));
@@ -149,7 +143,6 @@ public class GameUIManager : MonoBehaviour
         Debug.Log("Ingredients Opened");
 
         //play audio clip sfx
-        //source.PlayOneShot(bookWindowSound);
         AudioManager.Instance.PlaySFX("IngredientsOpen");
 
 
@@ -164,7 +157,6 @@ public class GameUIManager : MonoBehaviour
         Debug.Log("Ingredients Closed");
 
         //play audio clip sfx
-        //source.PlayOneShot(bookWindowSound);
         AudioManager.Instance.PlaySFX("IngredientsOpen");
 
 

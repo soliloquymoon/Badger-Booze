@@ -3470,10 +3470,24 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 8dd75f13fa9c61a48a87ec31d844a93b, type: 3}
   - name: PageTurn
     clip: {fileID: 8300000, guid: 1168dc19d13b63a4d88c1cada6219ce6, type: 3}
-  - name: ShortDialogue
+  - name: ShortDialogueA
     clip: {fileID: 8300000, guid: 380e7f1a9373ad64a97b04a463e20a00, type: 3}
-  - name: LongDialogue
+  - name: LongDialogueA
     clip: {fileID: 8300000, guid: 74c4e1a3f5cc5e049a7ce99863621e3c, type: 3}
+  - name: LongDialogueB
+    clip: {fileID: 8300000, guid: 9002a4545614a5a40bf19be79c418523, type: 3}
+  - name: LongDialogueC
+    clip: {fileID: 8300000, guid: 8751d82933373084f9560fae1cc9db3f, type: 3}
+  - name: ShortDialogueB
+    clip: {fileID: 8300000, guid: 186c3a3cc6820dd44bfed52b66ea5e38, type: 3}
+  - name: LongDialogueD
+    clip: {fileID: 8300000, guid: 8111b70bff586114587da80a64dc2df9, type: 3}
+  - name: ShortDialogueC
+    clip: {fileID: 8300000, guid: 991c42c2afb104740b03328100cc68b4, type: 3}
+  - name: ShortDialogueD
+    clip: {fileID: 8300000, guid: 43b90f542ef4c5047ae3d61b201a3d7e, type: 3}
+  - name: ShortDialogueE
+    clip: {fileID: 8300000, guid: f33e569be5441f14dbc59bf0cfc15cfa, type: 3}
   musicSource: {fileID: 1260616167}
   sfxSource: {fileID: 1638746263}
 --- !u!4 &532365814
