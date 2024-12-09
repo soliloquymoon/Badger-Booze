@@ -24,7 +24,6 @@ public class AudioManager : MonoBehaviour
 
     private void Start() {
         currScene = SceneManager.GetActiveScene();
-        Debug.Log(currScene.name);
 
         if(currScene.name == "TitleScene") {
             PlayMusic("TitleTheme");

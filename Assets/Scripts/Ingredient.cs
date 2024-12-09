@@ -111,23 +111,14 @@ public class Ingredient : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
     IEnumerator AddIngredient(Drink drink) {
         while (true) {
             yield return new WaitForSecondsRealtime(0.0002f);
-            // Pour drink multiple times to make it seem faster
-            for(int i = 0; i < 8; i++) {
-                drink.AddIngredient(this.name);
-                gameState.DeductMoney(0.0002f);
+            if (drink.CheckMaxBound())
+            {// Pour drink multiple times to make it seem faster
+                for(int i = 0; i < 8; i++) {
+                    drink.AddIngredient(this.name);
+                    gameState.DeductMoney(0.0002f);
+                }
+                customer.GetReceipt().SetText(drink, this.name);
             }
-            customer.GetReceipt().SetText(drink, this.name);
         }
-    }
-
-    public void SetName(string name) {
-        this.name = name;
-    }
-
-    public void SetSprite(Sprite sprite) {
-        image = this.GetComponent<Image>();
-
-        this.image.sprite = sprite;
-        this.image.SetNativeSize();
     }
 }

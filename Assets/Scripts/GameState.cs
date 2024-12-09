@@ -121,11 +121,12 @@ public class GameState : MonoBehaviour
         dailyTips = 0f;
         dailyNetIncome = 0f;
         dailyTotalScore = 0f;
+
         // If game over
         if(gameOver) {
             currentDay = 1;   // Reset game day to 1
             totalScore = 0f;  // Reset total score
-            barMoney = 100.0f; // Reset bar money
+            barMoney = 50.0f; // Reset bar money
             moneyUI.text = "$" + barMoney.ToString("N2").TrimStart('0').TrimStart(',');
             newDayText.text = "Start New Day";         // Reset from 'Restart Game' if needed
         } else {
@@ -150,7 +151,7 @@ public class GameState : MonoBehaviour
         currentTime = 1080.0f; // Starts at 6PM, equivalent to 1080 minutes
         endTime = 1560.0f;  // Ends at 2AM, equivalent to 1560 minutes
         timeOfDay = "PM";
-        barMoney = PlayerPrefs.GetFloat("barMoney", 100f);
+        barMoney = PlayerPrefs.GetFloat("barMoney", 50f);
         currentDay = PlayerPrefs.GetInt("currentDay", 1);
         totalScore = PlayerPrefs.GetFloat("totalScore", 0f);
         dailyCosts = 0f;

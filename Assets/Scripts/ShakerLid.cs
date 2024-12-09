@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.EventSystems;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Security.Cryptography;
 
 public class ShakerLid : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
@@ -69,7 +70,8 @@ public class ShakerLid : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
      */
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Shaker Lid"))
+        Drink drink = GameObject.Find("Customer").GetComponent<Customer>().GetMixingDrink();
+        if (other.gameObject.CompareTag("Shaker Lid") && drink.CheckMinBound())
         {
             finishMixing = true;
         }

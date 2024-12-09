@@ -164,6 +164,7 @@ public class OrderManager {
     public Order generateCustomerOrder() {
         DrinkManager drinksmanager = GameObject.FindWithTag("DrinksManager").GetComponent<DrinkManager>();
         List<string> drinkNames = drinksmanager.GetUnlockedDrinkNames();
+        Debug.Log(drinkNames.Count);
         string randomDrink = drinkNames[UnityEngine.Random.Range(0, drinkNames.Count - 1)];
 
         int randomOrder = UnityEngine.Random.Range(0, 2);

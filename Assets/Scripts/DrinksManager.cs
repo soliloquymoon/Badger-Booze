@@ -62,31 +62,15 @@ public class DrinkManager : MonoBehaviour {
         })
     };
 
-    private List<Drink> unlockedDrinks = new List<Drink>{drinkList[0]};
+    private List<string> unlockedDrinks = new List<string>();
     private int nextDrinkIndex;
-    private IngredientManager ingredientManager;
+    public IngredientManager ingredientManager;
 
-    void Start()
+    void Awake()
     {
-        nextDrinkIndex = 1;
-        ingredientManager = GameObject.Find("IngredientManager").GetComponent<IngredientManager>();
+        nextDrinkIndex = 0;
+        UnlockNewDrink(50);
     }
-
-    private float timer = 0f;
-    private float interval = 10f;
-
-    void Update()
-    {
-        timer += Time.deltaTime;
-
-        if (timer >= interval)
-        {
-            Debug.Log("new drink added");
-            UnlockNewDrink();
-            timer = 0f;
-        }
-    }
-
 
     public List<Drink> getDrinkList() {
         return drinkList;
@@ -101,22 +85,18 @@ public class DrinkManager : MonoBehaviour {
         return null;
     }
 
-    public List<string> GetUnlockedDrinkNames()
+    public void UnlockNewDrink(float earnings)
     {
-        List<string> drinkNames = new List<string>();
-        Debug.Log(this.unlockedDrinks == null);
-        foreach (Drink drink in this.unlockedDrinks)
-            drinkNames.Add(drink.getName());
-        return drinkNames;
+        Debug.Log(earnings);
+        if (earnings / 100 >= nextDrinkIndex)
+            unlockedDrinks.Add(drinkList[nextDrinkIndex].getName());
+            ingredientManager.UnlockNewIngredients(drinkList[nextDrinkIndex]);
+            nextDrinkIndex++;
     }
 
-    public void UnlockNewDrink()
+    public List<string> GetUnlockedDrinkNames()
     {
-        unlockedDrinks.Add(drinkList[nextDrinkIndex]);
-        ingredientManager.UnlockNewIngredients(drinkList[nextDrinkIndex]);
-
-        Debug.Log(this.GetUnlockedDrinkNames());
-        nextDrinkIndex++;
+        return this.unlockedDrinks;
     }
 
     /*

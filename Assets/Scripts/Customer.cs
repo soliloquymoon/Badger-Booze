@@ -10,7 +10,7 @@ public class Customer : MonoBehaviour
     private float targetXPosition;       // The X position where the character stops (3/4)
     private float targetYPosition;       // The Y position where the character stops (1/3 from the top)
     private bool reachedPosition = false;  // Flag to check if the character reached the middle
-    public float moveSpeed = 20f;           // Speed of horizontal movement
+    public float moveSpeed = 40f;           // Speed of horizontal movement
     public float bounceHeight = 4f;         // Height of each bounce
     public float bounceFrequency = 6f;      // Frequency of the bounce
     private float bounceTimer = 0f;         // Timer for the bounce
