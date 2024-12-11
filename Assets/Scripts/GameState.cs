@@ -40,6 +40,7 @@ public class GameState : MonoBehaviour
     private ReactionManager reactionManager;
     // Scene Management
     private GameObject bartendingScene;
+    
 
     public void DrinkServed() {
         Drink userDrink = customer.GetMixingDrink();
@@ -185,6 +186,7 @@ public class GameState : MonoBehaviour
         countTime = true;
     }
 
+
     public bool isDayDone() {
         return !countTime;
     }
@@ -192,7 +194,7 @@ public class GameState : MonoBehaviour
     void Start()
     {
         // Set up time and money variables
-        currentTime = 1450.0f; // Starts at 6PM, equivalent to 1080 minutes
+        currentTime = 1080.0f; // Starts at 6PM, equivalent to 1080 minutes
         endTime = 1560.0f;  // Ends at 2AM, equivalent to 1560 minutes
         timeOfDay = "PM";
         barMoney = PlayerPrefs.GetFloat("barMoney", 50f);
@@ -214,6 +216,7 @@ public class GameState : MonoBehaviour
         newDayText = GameObject.Find("NewDayText").GetComponent<Text>();
         dayUI = GameObject.Find("Day").GetComponent<Text>();
         summaryObject = GameObject.Find("Summary");
+        
 
         // Get Initial Bartending Scene
         bartendingScene = GameObject.Find("BartendingScene");
