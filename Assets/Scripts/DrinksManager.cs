@@ -68,13 +68,11 @@ public class DrinkManager : MonoBehaviour {
 
     void Awake()
     {
-        nextDrinkIndex = (int)(PlayerPrefs.GetFloat("barMoney", 50f) / 50f);
-        for (int i = 0; i <= nextDrinkIndex; i++)
+        nextDrinkIndex = PlayerPrefs.GetInt("nextDrinkIndex", 2);
+        for (int i = 0; i < nextDrinkIndex; i++)
         {
             unlockedDrinks.Add(drinkList[i].getName());
-            ingredientManager.UnlockNewIngredients(drinkList[i]);
         }
-        nextDrinkIndex++;
     }
 
     public List<Drink> getDrinkList() {
@@ -90,18 +88,29 @@ public class DrinkManager : MonoBehaviour {
         return null;
     }
 
-    public void UnlockNewDrink(float earnings)
+    /*
+     * UnlockNewDrink:
+     * Unlocks a new drink if the barMoney reaches a certain amount. This
+     * function is called when the new day starts.
+     *
+     */
+    public void UnlockNewDrink(float barMoney)
     {
-        Debug.Log(earnings);
-        if (nextDrinkIndex < drinkList.Count && (earnings / 30) >= nextDrinkIndex)
+        ingredientManager.gameObject.SetActive(false);
+        if (nextDrinkIndex < drinkList.Count && (barMoney / 30) >= nextDrinkIndex)
         {
-            Debug.Log("new recipe unlocked!");
             unlockedDrinks.Add(drinkList[nextDrinkIndex].getName());
-            ingredientManager.UnlockNewIngredients(drinkList[nextDrinkIndex]);
+            ingredientManager.gameObject.SetActive(true);
             nextDrinkIndex++;
+            PlayerPrefs.SetInt("nextDrinkIndex", nextDrinkIndex);
+            PlayerPrefs.Save();
         }
     }
 
+    /*
+     * GetUnlockedDrinkNames:
+     * Returns a list of string of the unlockedDrinks list.
+     */
     public List<string> GetUnlockedDrinkNames()
     {
         return this.unlockedDrinks;

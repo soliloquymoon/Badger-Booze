@@ -13,24 +13,23 @@ public class Ingredient : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
     private Canvas canvas;
     private int originalSiblingIndex;
     private Animator animator;
-    private Image image;
-    private Coroutine pouring;
     private GameState gameState;
     private bool isAdding;
     private Drink currDrink;
+    private IngredientManager ingredientManager;
 
     void Start()
     {
-        // Initialize references for RectTransform, parent, canvas, animator, and image
+        // Find customer, GameState, and IngredientManager objects
+        customer = GameObject.FindGameObjectWithTag("Customer").GetComponent<Customer>();
+        gameState = GameObject.FindGameObjectWithTag("GameState").GetComponent<GameState>();
+        ingredientManager = GameObject.Find("IngredientManager").GetComponent<IngredientManager>();
+
+        // Initialize references for RectTransform, parent, canvas, and animator
         rectTransform = this.GetComponent<RectTransform>();
         originalParent = this.transform.parent;
         canvas = this.GetComponentInParent<Canvas>();
         animator = this.GetComponent<Animator>();
-        image = this.GetComponent<Image>();
-
-        // Find customer, GameState, and receipt objects
-        customer = GameObject.FindGameObjectWithTag("Customer").GetComponent<Customer>();
-        gameState = GameObject.FindGameObjectWithTag("GameState").GetComponent<GameState>();
     }
 
     /*
@@ -131,8 +130,6 @@ public class Ingredient : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
     }
     **/
 
-
-
     void FixedUpdate() {
         if(isAdding) {
             if (currDrink.CheckMaxBound()) {
@@ -142,7 +139,6 @@ public class Ingredient : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
             customer.GetReceipt().SetText(currDrink, this.name);
         }
     }
-
 
 
 }

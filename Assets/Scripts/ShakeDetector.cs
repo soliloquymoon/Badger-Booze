@@ -10,8 +10,6 @@ public class ShakeDetector : MonoBehaviour
     public float shakeThreshold = 2.5f; // Sensitivity for shake detection
     public float cooldownTime = 1.0f; // Cooldown between actions
     private float lastActionTime;
-    private bool isShaking = true;
-    private bool isPouring = false;
 
     public Slider shakeProgressBar; // Slider for shaking progress
     public Slider tiltProgressBar; // Slider for tilting progress (child of cocktailImage)
@@ -194,8 +192,6 @@ public class ShakeDetector : MonoBehaviour
     public void ResetBartendingScene() {
         openShaker.SetActive(true);
         shakerLid.Reset();
-        isShaking = true;
-        isPouring = false;
     }
 
     private void DetectShake()
@@ -212,8 +208,6 @@ public class ShakeDetector : MonoBehaviour
 
         if (currentShakes >= shakesToComplete)
         {
-            isShaking = false;
-            isPouring = true;
             MessageManager.Instance.TurnOffShakeMessage();
             MessageManager.Instance.TurnOnTiltMessage();
             EndShakingScene();
@@ -235,7 +229,6 @@ public class ShakeDetector : MonoBehaviour
 
         if (currentTilts >= tiltsToComplete)
         {
-            isPouring = false;
             MessageManager.Instance.TurnOffTiltMessage();
             ShowCocktailFinalState();
         }

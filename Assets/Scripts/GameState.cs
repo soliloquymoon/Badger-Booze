@@ -137,7 +137,7 @@ public class GameState : MonoBehaviour
         moneyUI.text = "$" + barMoney.ToString("N2").TrimStart('0').TrimStart(',');
     }
 
-    // Called when ingredients are used or new ingredients are unlocked.
+    // Called when ingredients are used.
     public void DeductMoney(float amount) {
         barMoney -= amount;
         dailyCosts += amount;
@@ -182,6 +182,7 @@ public class GameState : MonoBehaviour
         PlayerPrefs.SetInt("currentDay", currentDay);
         PlayerPrefs.SetFloat("barMoney", barMoney);
         PlayerPrefs.SetFloat("totalScore", totalScore);
+        PlayerPrefs.Save();
         summaryObject.SetActive(false);
         gameOver = false;
         countTime = true;

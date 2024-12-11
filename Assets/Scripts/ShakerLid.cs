@@ -59,7 +59,8 @@ public class ShakerLid : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
     public void OnEndDrag(PointerEventData eventData)
     {
         this.rectTransform.anchoredPosition = originalPosition;
-        if (finishMixing) {
+        Drink drink = GameObject.Find("Customer").GetComponent<Customer>().GetMixingDrink();
+        if (finishMixing && drink.CheckMinBound()) {
             MessageManager.Instance.TurnOnShakeMessage();
             closedShaker.SetActive(true);
             openShaker.SetActive(false);
@@ -74,8 +75,7 @@ public class ShakerLid : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
      */
     void OnTriggerEnter2D(Collider2D other)
     {
-        Drink drink = GameObject.Find("Customer").GetComponent<Customer>().GetMixingDrink();
-        if (other.gameObject.CompareTag("Shaker Lid") && drink.CheckMinBound())
+        if (other.gameObject.CompareTag("Shaker Lid"))
         {
             finishMixing = true;
         }
