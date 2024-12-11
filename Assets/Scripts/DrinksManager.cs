@@ -68,8 +68,13 @@ public class DrinkManager : MonoBehaviour {
 
     void Awake()
     {
-        nextDrinkIndex = 0;
-        UnlockNewDrink(50);
+        nextDrinkIndex = (int)(PlayerPrefs.GetFloat("barMoney", 50f) / 50f);
+        for (int i = 0; i <= nextDrinkIndex; i++)
+        {
+            unlockedDrinks.Add(drinkList[i].getName());
+            ingredientManager.UnlockNewIngredients(drinkList[i]);
+        }
+        nextDrinkIndex++;
     }
 
     public List<Drink> getDrinkList() {
@@ -88,10 +93,13 @@ public class DrinkManager : MonoBehaviour {
     public void UnlockNewDrink(float earnings)
     {
         Debug.Log(earnings);
-        if (earnings / 100 >= nextDrinkIndex)
+        if (nextDrinkIndex < drinkList.Count && (earnings / 30) >= nextDrinkIndex)
+        {
+            Debug.Log("new recipe unlocked!");
             unlockedDrinks.Add(drinkList[nextDrinkIndex].getName());
             ingredientManager.UnlockNewIngredients(drinkList[nextDrinkIndex]);
             nextDrinkIndex++;
+        }
     }
 
     public List<string> GetUnlockedDrinkNames()

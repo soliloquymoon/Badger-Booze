@@ -166,6 +166,7 @@ public class GameState : MonoBehaviour
         dailyTips = 0f;
         dailyNetIncome = 0f;
         dailyTotalScore = 0f;
+        drinkManager.UnlockNewDrink(barMoney);
 
         // If game over
         if(gameOver) {

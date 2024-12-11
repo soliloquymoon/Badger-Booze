@@ -165,7 +165,7 @@ public class OrderManager {
         DrinkManager drinksmanager = GameObject.FindWithTag("DrinksManager").GetComponent<DrinkManager>();
         List<string> drinkNames = drinksmanager.GetUnlockedDrinkNames();
         Debug.Log(drinkNames.Count);
-        string randomDrink = drinkNames[UnityEngine.Random.Range(0, drinkNames.Count - 1)];
+        string randomDrink = drinkNames[UnityEngine.Random.Range(0, drinkNames.Count)];
 
         int randomOrder = UnityEngine.Random.Range(0, 2);
         Order order;
@@ -173,12 +173,12 @@ public class OrderManager {
         if (randomOrder == 0)
         {
             List<Order> orderList = orderDict[randomDrink];
-            order = orderList[UnityEngine.Random.Range(0, orderList.Count - 1)];
+            order = orderList[UnityEngine.Random.Range(0, orderList.Count)];
         }
         else
         {
             List<Order> orderList = orderDict[""];
-            order = orderList[UnityEngine.Random.Range(0, orderList.Count - 1)];
+            order = orderList[UnityEngine.Random.Range(0, orderList.Count)];
             order.setDrinkName(randomDrink);
         }
         return order;
