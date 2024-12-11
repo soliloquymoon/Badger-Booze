@@ -48,8 +48,8 @@ public class GameState : MonoBehaviour
         // A drink score of 80 earns $8, a score of 70 earns $7 and so on...
         float money = (float) score / 10f;
         // Mood score determines the percentage of tip you receive
-        // Example: 80% mood and a score of 85 means you get 8.5 * 80/100 = $15.3
-        float tip = money * (customer.GetMoodScore() / 100);
+        // Example: 80% mood and a score of 85 means you get 8.5 * 80/200 = $3.4
+        float tip = (money * customer.GetMoodScore()) / 200;
 
         // Update scores
         dailyTotalScore += score;
@@ -130,7 +130,6 @@ public class GameState : MonoBehaviour
         if(barMoney + amount <= 999999f) {
             barMoney += amount;
             dailyRevenue += amount;
-            dailyNetIncome += amount;
         } else {
             barMoney = 999999f;
         }
@@ -141,7 +140,6 @@ public class GameState : MonoBehaviour
     public void DeductMoney(float amount) {
         barMoney -= amount;
         dailyCosts += amount;
-        dailyNetIncome -= amount;
         moneyUI.text = "$" + barMoney.ToString("N2").TrimStart('0').TrimStart(',');
     }
 
@@ -164,7 +162,6 @@ public class GameState : MonoBehaviour
         dailyCustomersServed = 0;
         dailyRevenue = 0f;
         dailyTips = 0f;
-        dailyNetIncome = 0f;
         dailyTotalScore = 0f;
         drinkManager.UnlockNewDrink(barMoney);
 
@@ -195,7 +192,7 @@ public class GameState : MonoBehaviour
     void Start()
     {
         // Set up time and money variables
-        currentTime = 1080.0f; // Starts at 6PM, equivalent to 1080 minutes
+        currentTime = 1450.0f; // Starts at 6PM, equivalent to 1080 minutes
         endTime = 1560.0f;  // Ends at 2AM, equivalent to 1560 minutes
         timeOfDay = "PM";
         barMoney = PlayerPrefs.GetFloat("barMoney", 50f);
@@ -205,7 +202,6 @@ public class GameState : MonoBehaviour
         dailyCustomersServed = 0;
         dailyRevenue = 0f;
         dailyTips = 0f;
-        dailyNetIncome = 0f;
         dailyTotalScore = 0f;
 
         // Get UI components
@@ -239,6 +235,8 @@ public class GameState : MonoBehaviour
     {
         if(currentTime >= endTime) {
             countTime = false;
+            // Calculate net income
+            dailyNetIncome = dailyRevenue - dailyCosts;
             // Hide customer by re-ordering it behind the bar
             customerObject.transform.SetSiblingIndex(0);
             // Display end of day summary

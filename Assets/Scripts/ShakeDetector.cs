@@ -105,6 +105,7 @@ public class ShakeDetector : MonoBehaviour
         {
             DetectTilt();
         }
+
         #else
         // Accelerometer-based shake detection
         Vector3 acceleration = Input.acceleration;
@@ -129,11 +130,6 @@ public class ShakeDetector : MonoBehaviour
         }
         
         #endif
-
-
-        
-            
-        
     }
 
     public void ServeDrink()
