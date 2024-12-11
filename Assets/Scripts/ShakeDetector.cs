@@ -41,6 +41,8 @@ public class ShakeDetector : MonoBehaviour
         drinksManager = GameObject.FindGameObjectWithTag("DrinksManager").GetComponent<DrinkManager>();
         drinkSprites = Resources.LoadAll<Sprite>("Drinks");
         gameState = GameObject.FindGameObjectWithTag("GameState").GetComponent<GameState>();
+        
+        Input.gyro.enabled = true;
 
         // Assign animator
         shakerAnimator = GetComponent<Animator>();
@@ -199,7 +201,9 @@ public class ShakeDetector : MonoBehaviour
 
         if (currentShakes >= shakesToComplete)
         {
+            isShaking = false;
             EndShakingScene();
+
         }
     }
 
@@ -278,8 +282,6 @@ public class ShakeDetector : MonoBehaviour
     {
         Debug.LogError("Tilt Progress Bar reference is missing!");
     }
-
-    isShaking = false;
 }
 
 
