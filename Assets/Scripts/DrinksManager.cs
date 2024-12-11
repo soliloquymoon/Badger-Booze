@@ -97,7 +97,7 @@ public class DrinkManager : MonoBehaviour {
     public void UnlockNewDrink(float barMoney)
     {
         ingredientManager.gameObject.SetActive(false);
-        if (nextDrinkIndex < drinkList.Count && (barMoney / 30) >= nextDrinkIndex)
+        if (nextDrinkIndex < drinkList.Count && (barMoney / 60) >= nextDrinkIndex)
         {
             unlockedDrinks.Add(drinkList[nextDrinkIndex].getName());
             ingredientManager.gameObject.SetActive(true);
