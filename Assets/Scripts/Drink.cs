@@ -48,13 +48,13 @@ public class Drink {
         {
             if (ingredients.ContainsKey(ingredientName))
             {
-                totalAmount += 0.0001f;
-                ingredients[ingredientName] += 0.0001f;
+                totalAmount += 0.01f;
+                ingredients[ingredientName] += 0.01f;
             }
             else
             {
-                totalAmount += 0.0001f;
-                ingredients.Add(ingredientName, 0.0001f);
+                totalAmount += 0.01f;
+                ingredients.Add(ingredientName, 0.01f);
             }
         }
 

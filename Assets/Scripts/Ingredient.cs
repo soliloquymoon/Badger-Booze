@@ -16,6 +16,8 @@ public class Ingredient : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
     private Image image;
     private Coroutine pouring;
     private GameState gameState;
+    private bool isAdding;
+    private Drink currDrink;
 
     void Start()
     {
@@ -77,7 +79,9 @@ public class Ingredient : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
         if (other.gameObject.CompareTag("Shaker") && this.rectTransform.parent == canvas.transform)
         {
             animator.SetBool("Pour", true);
-            pouring = StartCoroutine(AddIngredient(customer.GetMixingDrink()));
+            //pouring = StartCoroutine(AddIngredient(customer.GetMixingDrink()));
+            currDrink = customer.GetMixingDrink();
+            isAdding = true;
         }
     }
 
@@ -92,10 +96,13 @@ public class Ingredient : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
         if (other.gameObject.CompareTag("Shaker"))
         {
             animator.SetBool("Pour", false);
+            /**
             if (pouring != null) {
                 StopCoroutine(pouring);
                 pouring = null;
             }
+            **/
+            isAdding = false;
         }
     }
 
@@ -108,6 +115,7 @@ public class Ingredient : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
     * 
     * It has a very short delay (0.001f), causing the ingredient to be added at a very high frequency.
     */
+    /**
     IEnumerator AddIngredient(Drink drink) {
         while (true) {
             yield return new WaitForSecondsRealtime(0.0002f);
@@ -121,4 +129,20 @@ public class Ingredient : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
             }
         }
     }
+    **/
+
+
+
+    void FixedUpdate() {
+        if(isAdding) {
+            if (currDrink.CheckMaxBound()) {
+                currDrink.AddIngredient(this.name);
+                gameState.DeductMoney(0.005f);  //changeable
+            }
+            customer.GetReceipt().SetText(currDrink, this.name);
+        }
+    }
+
+
+
 }

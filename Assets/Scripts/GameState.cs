@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.PackageManager;
+//using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -115,7 +115,7 @@ public class GameState : MonoBehaviour
     }
 
     IEnumerator waitForReaction() {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(3.5f);
         GameObject.Find("Cocktail").transform.SetParent(bartendingScene.transform);
         customer.NewCustomer();
         customer.EnableDialogueButtons();

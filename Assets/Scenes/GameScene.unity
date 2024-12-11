@@ -3488,6 +3488,12 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 43b90f542ef4c5047ae3d61b201a3d7e, type: 3}
   - name: ShortDialogueE
     clip: {fileID: 8300000, guid: f33e569be5441f14dbc59bf0cfc15cfa, type: 3}
+  - name: Shake
+    clip: {fileID: 8300000, guid: 6980d74204cb6724ba9bfd9f99a24360, type: 3}
+  - name: Pour
+    clip: {fileID: 8300000, guid: 960e41eecb679a44997b25a93bdb5e2f, type: 3}
+  - name: Serve
+    clip: {fileID: 8300000, guid: e797208bbc4432447bd3f6357aecf063, type: 3}
   musicSource: {fileID: 1260616167}
   sfxSource: {fileID: 1638746263}
 --- !u!4 &532365814

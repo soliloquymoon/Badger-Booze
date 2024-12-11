@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement; 
+using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class ShakeDetector : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class ShakeDetector : MonoBehaviour
     public float shakeThreshold = 2.5f; // Sensitivity for shake detection
     public float cooldownTime = 1.0f; // Cooldown between actions
     private float lastActionTime;
+    private bool isShaking = true;
 
     public Slider shakeProgressBar; // Slider for shaking progress
     public Slider tiltProgressBar; // Slider for tilting progress (child of cocktailImage)
@@ -104,19 +106,23 @@ public class ShakeDetector : MonoBehaviour
         Vector3 acceleration = Input.acceleration;
         float accelerationMagnitude = acceleration.sqrMagnitude;
 
-        if (accelerationMagnitude > shakeThreshold && Time.time - lastActionTime > cooldownTime)
-        {
-            DetectShake();
-            lastActionTime = Time.time;
-        }
+        if (isShaking) {
+            if (accelerationMagnitude > shakeThreshold && Time.time - lastActionTime > cooldownTime)
+            {
+                DetectShake();
+                lastActionTime = Time.time;
+            }
 
-        // Gyroscope-based tilt detection
-        Vector3 gyroRotation = Input.gyro.rotationRateUnbiased;
-        if (Mathf.Abs(gyroRotation.x) > 1.5f && Time.time - lastActionTime > cooldownTime)
-        {
-            DetectTilt();
-            lastActionTime = Time.time;
+        } else {
+            // Gyroscope-based tilt detection
+            Vector3 gyroRotation = Input.gyro.rotationRateUnbiased;
+            if (Mathf.Abs(gyroRotation.x) > 1.5f && Time.time - lastActionTime > cooldownTime)
+            {
+                DetectTilt();
+                lastActionTime = Time.time;
+            }
         }
+        
         #endif
     }
 
@@ -137,6 +143,8 @@ public class ShakeDetector : MonoBehaviour
         {
             cocktailImage.SetActive(true);
             tiltProgressBar.gameObject.SetActive(false);
+            StartCoroutine(serveDrinkSFX(0.5f));
+            
 
 
             // Set its position to the bottom middle of the screen
@@ -165,9 +173,16 @@ public class ShakeDetector : MonoBehaviour
         }
     }
 
+    IEnumerator serveDrinkSFX(float duration) {
+        AudioManager.Instance.PlaySFX("Serve");
+        yield return new WaitForSeconds(duration);
+    }
+
+
     public void ResetBartendingScene() {
         openShaker.SetActive(true);
         shakerLid.Reset();
+        isShaking = true;
     }
 
     private void DetectShake()
@@ -176,6 +191,8 @@ public class ShakeDetector : MonoBehaviour
         {
             shakerAnimator.SetTrigger("Shake");
         }
+
+        AudioManager.Instance.PlaySFX("Shake");
 
         currentShakes++;
         UpdateProgressBar(shakeProgressBar, currentShakes, shakesToComplete);
@@ -192,6 +209,8 @@ public class ShakeDetector : MonoBehaviour
         {
             shakerAnimator.SetTrigger("Tilt");
         }
+
+        AudioManager.Instance.PlaySFX("Pour");
 
         currentTilts++;
         UpdateProgressBar(tiltProgressBar, currentTilts, tiltsToComplete);
@@ -259,6 +278,8 @@ public class ShakeDetector : MonoBehaviour
     {
         Debug.LogError("Tilt Progress Bar reference is missing!");
     }
+
+    isShaking = false;
 }
 
 
