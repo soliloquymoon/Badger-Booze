@@ -8,10 +8,12 @@ public class TutorialManager : MonoBehaviour
     public Button okButton;
     private CanvasGroup dimFadeGroup;
     public GameObject WelcomePanel;
+    public GameObject WindowTutorial;
+    public GameObject Dimmer;
     // Start is called before the first frame update
     private void Start()
     {
-        dimFadeGroup = GameObject.Find("Dim").GetComponent<CanvasGroup>();
+        dimFadeGroup = GameObject.Find("DimB").GetComponent<CanvasGroup>();
         //if(PlayerPrefs.GetString("unity.player_session_count") == "1"){
         //    Debug.Log("Meow");
         //    WelcomePanel.SetActive(false);
@@ -25,7 +27,7 @@ public class TutorialManager : MonoBehaviour
 
        if (PlayerPrefs.GetInt("FIRSTTIMEOPENING") == 1) {
             WelcomePanel.SetActive(false);
-            StartCoroutine(ShowWelcomeMessage(2F));
+            StartCoroutine(ShowWelcomeMessage(1.5F));
             PlayerPrefs.SetInt("FIRSTTIMEOPENING", 0);
        } 
 
@@ -33,16 +35,31 @@ public class TutorialManager : MonoBehaviour
     
 
     public void OnOKClick() {
-        dimFadeGroup.alpha = 0;
+        Dimmer.SetActive(false);
         WelcomePanel.SetActive(false);
+        StartCoroutine(ShowWindowTutorials(1.5F));
+    }
+
+    public void OnOKWTClick() {
+        dimFadeGroup.alpha = 0;
+        WindowTutorial.SetActive(false);
     }
 
     IEnumerator ShowWelcomeMessage(float duration) {
         yield return new WaitForSeconds(duration);
 
         
-        dimFadeGroup.alpha = 0.8F;
+        Dimmer.SetActive(true);
         WelcomePanel.SetActive(true);
+    }
+
+
+    IEnumerator ShowWindowTutorials(float duration) {
+        yield return new WaitForSeconds(duration);
+
+        
+        dimFadeGroup.alpha = 0.8F;
+        WindowTutorial.SetActive(true);
     }
 
 

@@ -115,7 +115,7 @@ public class GameState : MonoBehaviour
     }
 
     IEnumerator waitForReaction() {
-        yield return new WaitForSeconds(3.5f);
+        yield return new WaitForSeconds(3f);
         GameObject.Find("Cocktail").transform.SetParent(bartendingScene.transform);
         customer.NewCustomer();
         customer.EnableDialogueButtons();

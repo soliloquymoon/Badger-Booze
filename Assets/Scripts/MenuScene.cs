@@ -103,11 +103,11 @@ public class MenuScene : MonoBehaviour
                 //TODO Implement a warning message UI for this condition
             } else {
                 recipeIsOn = true;
-                StartCoroutine(TurnOnRecipeBook(0.35f));
+                StartCoroutine(TurnOnRecipeBook(0.25f));
             }
         } else {
             recipeIsOn = false;
-            StartCoroutine(TurnOffRecipeBook(0.35f));
+            StartCoroutine(TurnOffRecipeBook(0.25f));
         }
 
     }
@@ -147,7 +147,7 @@ public class MenuScene : MonoBehaviour
                 //StartCoroutine(TurnOnRecipeBook(0.35f));
                 ingredientsIsOn = true;
                 if (ingredientsIsOn) {
-                    StartCoroutine(TurnOnIngredients(0.45f));
+                    StartCoroutine(TurnOnIngredients(0.25f));
                 }
             }
             
@@ -155,7 +155,7 @@ public class MenuScene : MonoBehaviour
             //StartCoroutine(TurnOffRecipeBook(0.35f));
             ingredientsIsOn = false;
             if (!ingredientsIsOn) {
-                StartCoroutine(TurnOffIngredients(0.45f));
+                StartCoroutine(TurnOffIngredients(0.25f));
             }
         }
     }
@@ -190,9 +190,9 @@ public class MenuScene : MonoBehaviour
 
     //TODO Only for Play Mode purposes to check tutorial functionality, 
     //must delete later for actual build
-    void OnApplicationQuit() {
-        PlayerPrefs.DeleteAll();
-    }
+    //void OnApplicationQuit() {
+    //    PlayerPrefs.DeleteAll();
+    //}
 
     
 }

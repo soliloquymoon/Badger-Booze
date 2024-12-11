@@ -13,6 +13,8 @@ public class ShakerLid : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
     public GameObject closedShaker;
     public GameObject openShaker;
     public GameObject ingredients;
+    
+
 
     void Start()
     {
@@ -20,6 +22,7 @@ public class ShakerLid : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
         rectTransform = this.GetComponent<RectTransform>();
         finishMixing = false;
         closedShaker.SetActive(false);
+        
     }
 
     public void Reset() {
@@ -57,6 +60,7 @@ public class ShakerLid : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
     {
         this.rectTransform.anchoredPosition = originalPosition;
         if (finishMixing) {
+            MessageManager.Instance.TurnOnShakeMessage();
             closedShaker.SetActive(true);
             openShaker.SetActive(false);
             ingredients.SetActive(false);

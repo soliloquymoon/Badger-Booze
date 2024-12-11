@@ -11,6 +11,7 @@ public class ShakeDetector : MonoBehaviour
     public float cooldownTime = 1.0f; // Cooldown between actions
     private float lastActionTime;
     private bool isShaking = true;
+    private bool isPouring = false;
 
     public Slider shakeProgressBar; // Slider for shaking progress
     public Slider tiltProgressBar; // Slider for tilting progress (child of cocktailImage)
@@ -32,6 +33,8 @@ public class ShakeDetector : MonoBehaviour
     private DrinkManager drinksManager;
     public GameObject openShaker;
     private Sprite[] drinkSprites;
+    public GameObject shakeMessage;
+    public GameObject tiltMessage;
 
     void Start()
     {
@@ -41,6 +44,7 @@ public class ShakeDetector : MonoBehaviour
         drinksManager = GameObject.FindGameObjectWithTag("DrinksManager").GetComponent<DrinkManager>();
         drinkSprites = Resources.LoadAll<Sprite>("Drinks");
         gameState = GameObject.FindGameObjectWithTag("GameState").GetComponent<GameState>();
+
         
         Input.gyro.enabled = true;
 
@@ -113,9 +117,10 @@ public class ShakeDetector : MonoBehaviour
             {
                 DetectShake();
                 lastActionTime = Time.time;
-            }
+            }   
 
-        } else {
+        } 
+        if (isPouring) {
             // Gyroscope-based tilt detection
             Vector3 gyroRotation = Input.gyro.rotationRateUnbiased;
             if (Mathf.Abs(gyroRotation.x) > 1.5f && Time.time - lastActionTime > cooldownTime)
@@ -126,6 +131,11 @@ public class ShakeDetector : MonoBehaviour
         }
         
         #endif
+
+
+        
+            
+        
     }
 
     public void ServeDrink()
@@ -185,6 +195,7 @@ public class ShakeDetector : MonoBehaviour
         openShaker.SetActive(true);
         shakerLid.Reset();
         isShaking = true;
+        isPouring = false;
     }
 
     private void DetectShake()
@@ -202,6 +213,9 @@ public class ShakeDetector : MonoBehaviour
         if (currentShakes >= shakesToComplete)
         {
             isShaking = false;
+            isPouring = true;
+            MessageManager.Instance.TurnOffShakeMessage();
+            MessageManager.Instance.TurnOnTiltMessage();
             EndShakingScene();
 
         }
@@ -221,6 +235,8 @@ public class ShakeDetector : MonoBehaviour
 
         if (currentTilts >= tiltsToComplete)
         {
+            isPouring = false;
+            MessageManager.Instance.TurnOffTiltMessage();
             ShowCocktailFinalState();
         }
     }
@@ -235,6 +251,7 @@ public class ShakeDetector : MonoBehaviour
 
     private void EndShakingScene()
 {
+
 
     // Display the cocktail image
     if (cocktailImage != null)
@@ -287,6 +304,7 @@ public class ShakeDetector : MonoBehaviour
 
     private void ShowCocktailFinalState()
     {
+        
 
         // Display the Serve Button
         if (serveButton != null)

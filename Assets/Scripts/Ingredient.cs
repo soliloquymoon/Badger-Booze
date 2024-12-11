@@ -137,7 +137,7 @@ public class Ingredient : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
         if(isAdding) {
             if (currDrink.CheckMaxBound()) {
                 currDrink.AddIngredient(this.name);
-                gameState.DeductMoney(0.005f);  //changeable
+                gameState.DeductMoney(0.02f);  //changeable
             }
             customer.GetReceipt().SetText(currDrink, this.name);
         }
