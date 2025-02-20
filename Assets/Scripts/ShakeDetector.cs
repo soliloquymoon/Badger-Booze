@@ -33,6 +33,9 @@ public class ShakeDetector : MonoBehaviour
     private Sprite[] drinkSprites;
     public GameObject shakeMessage;
     public GameObject tiltMessage;
+    private bool isPouring = false;
+    private bool isShaking = true;
+    
 
     void Start()
     {
@@ -188,6 +191,8 @@ public class ShakeDetector : MonoBehaviour
     public void ResetBartendingScene() {
         openShaker.SetActive(true);
         shakerLid.Reset();
+        isShaking = true;
+        isPouring = false;
     }
 
     private void DetectShake()
@@ -240,6 +245,8 @@ public class ShakeDetector : MonoBehaviour
 
     private void EndShakingScene()
 {
+    isShaking = false;
+    isPouring = true;
 
 
     // Display the cocktail image
@@ -293,6 +300,7 @@ public class ShakeDetector : MonoBehaviour
 
     private void ShowCocktailFinalState()
     {
+        isPouring = false;
         
 
         // Display the Serve Button
